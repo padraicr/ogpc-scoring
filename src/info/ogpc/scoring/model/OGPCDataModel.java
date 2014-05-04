@@ -202,8 +202,21 @@ public class OGPCDataModel {
 		return "Studenty";
 	}
 
-	public String calculateCategoryAward(String category) {
-		return category;
+	public String calculateCategoryAward(Category category) {
+		//Need to add category heirarchy here
+		String highestTeam = "";
+		int currentValue = -1;
+		for (Team team : getTeams()) {
+			ScoringSheet sheet = team.getScoringSheet(category);
+			Integer value = sheet.getTotalScore();
+			if (value > currentValue) {
+				highestTeam = team.getName();
+				currentValue = value;
+			} else if (value == currentValue) {
+				highestTeam = highestTeam + ":" + team.getName();
+			}
+		}
+		return highestTeam;
 	}
 
 	public String calculateRookieAward() {

@@ -10,22 +10,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class MainWindow extends JPanel {
+public class MainWindow extends JPanel implements ChangeListener {
 	JTabbedPane contentPane;
-	
+	SummaryPanel summaryPage = new SummaryPanel();
+	JComponent scoringPage = new ScoringPanel();
+	JComponent teamInformation = new TeamInformationPanel();
+	JComponent Achievements = new AchievementInfoPanel();
+
 	public MainWindow() {
-	
-		
+
 		contentPane = new JTabbedPane();
+		contentPane.addChangeListener(this);
 
 		JComponent summaryPage = new SummaryPanel();
 		JComponent scoringPage = new ScoringPanel();
 		JComponent teamInformation = new TeamInformationPanel();
 		JComponent Achievements = new AchievementInfoPanel();
 
-		contentPane.setPreferredSize(new Dimension(1024,768));
-		setMinimumSize(new Dimension(1024,768));
+		contentPane.setPreferredSize(new Dimension(1024, 768));
+		setMinimumSize(new Dimension(1024, 768));
 
 		contentPane.addTab("Scoring Summary", summaryPage);
 		contentPane.addTab("Scoring Details", scoringPage);
@@ -44,5 +50,10 @@ public class MainWindow extends JPanel {
 		panel.setLayout(new GridLayout(1, 1));
 		panel.add(filler);
 		return panel;
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		summaryPage.updateSummary();
 	}
 }

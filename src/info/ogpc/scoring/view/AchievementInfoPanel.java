@@ -55,6 +55,7 @@ public class AchievementInfoPanel extends JPanel implements ActionListener {
 		JComboBox cb = (JComboBox<Category>)e.getSource();
 		achievementTable.setModel(new AchievementInfoTableModel((Category) cb.getSelectedItem()));
 		achievementRankingTable.setModel(new AchievementRankingTableModel((Category) cb.getSelectedItem()));
+		this.repaint();
 		
 		
 	}

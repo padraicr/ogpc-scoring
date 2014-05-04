@@ -97,9 +97,21 @@ public class Team {
 			throw new RuntimeException(
 					"scoreAchievement - Can not find scoringSheet for category:"
 							+ category);
+		System.out.println("scoring achievement - "+value);
 		scoringSheet.scoreAchievement(achievementId, value);
 
 	}
 
+	public void scoreAchievement(Category category, String achievementId) {
+		ScoringSheet scoringSheet = scoringSheets.get(category);
+		if (scoringSheet == null)
+			throw new RuntimeException(
+					"scoreAchievement - Can not find scoringSheet for category:"
+							+ category);
+		Achievement achievement = category.getAchievement(achievementId);
+		System.out.println("scoring achievement - "+achievement.getPointValue());
+		scoringSheet.scoreAchievement(achievementId, achievement.getPointValue());
+
+	}
 
 }

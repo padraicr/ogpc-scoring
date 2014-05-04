@@ -23,6 +23,10 @@ public class Category {
 		return achievements;
 	}
 
+	public Achievement getAchievement(String id) {
+		return achievements.get(id);
+	}
+
 	public String getName() {
 		return name;
 	}
