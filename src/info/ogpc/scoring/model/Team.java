@@ -1,6 +1,10 @@
 package info.ogpc.scoring.model;
 
+import info.ogpc.scoring.view.Main;
+
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class Team {
@@ -11,6 +15,7 @@ public class Team {
 	private String schoolName;
 	private int numberOfStudents;
 	private String teamId;
+	private Map<Category, ScoringSheet> scoringSheets;
 
 	public Team(String _teamId, String _coachLastName, String _coachFirstName, String _name,
 			SchoolType _schoolType, String _schoolName, int _numberOfStudents) {
@@ -21,7 +26,17 @@ public class Team {
 		schoolType = _schoolType;
 		schoolName = _schoolName;
 		numberOfStudents = _numberOfStudents;
+		scoringSheets = new HashMap<Category, ScoringSheet>();
+		
 
+	}
+	
+	public void initScoringSheet(){
+		OGPCDataModel dataModel = Main.getDataModel();
+		for (Category category : dataModel.getCategories()) {
+			scoringSheets.put(category, new ScoringSheet(category));
+		}
+		
 	}
 
 	public String getTeamId() {
@@ -56,4 +71,23 @@ public class Team {
 		return numberOfStudents;
 	}
 
+	public Map<Category, ScoringSheet> getScoringSheets() {
+		return scoringSheets;
+	}
+	
+	public ScoringSheet getScoringSheet(Category category) {
+		ScoringSheet sheet = scoringSheets.get(category);
+		if (sheet != null)
+			return sheet;
+		else
+			throw new RuntimeException("getScoringSheet - Can not find scoringSheet for category:"+category);
+	}
+
+	public void scoreAchievement(Category category, String achievementId, Integer value) {
+		ScoringSheet scoringSheet = scoringSheets.get(category);
+		if (scoringSheet == null)
+			throw new RuntimeException("scoreAchievement - Can not find scoringSheet for category:"+category);
+		scoringSheet.scoreAchievement(achievementId, value);
+		
+	}
 }

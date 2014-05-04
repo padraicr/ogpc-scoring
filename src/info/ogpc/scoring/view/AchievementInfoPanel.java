@@ -18,6 +18,7 @@ import javax.swing.JTable;
 
 public class AchievementInfoPanel extends JPanel implements ActionListener {
 	JTable achievementTable;
+	JTable achievementRankingTable;
 	JComboBox<Category> categorySelector;
 	public AchievementInfoPanel () {
 		OGPCDataModel dataModel = Main.getDataModel();
@@ -31,18 +32,24 @@ public class AchievementInfoPanel extends JPanel implements ActionListener {
 		categorySelector.addActionListener(this);
 				
 		achievementTable = new JTable(new AchievementInfoTableModel(categorySelector.getItemAt(0)));
+		achievementRankingTable = new JTable(new AchievementRankingTableModel(categorySelector.getItemAt(0)));
 		
 		JScrollPane scrollPane = new JScrollPane(achievementTable);
 		achievementTable.setFillsViewportHeight(true);
+
+		JScrollPane scrollRankingPane = new JScrollPane(achievementRankingTable);
+		achievementRankingTable.setFillsViewportHeight(true);
 		
-		scrollPane.setPreferredSize(new Dimension(1024,768));
+//		scrollPane.setPreferredSize(new Dimension(600,768));
 		add(categorySelector);
 		add(scrollPane);
+		add(scrollRankingPane);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		JComboBox cb = (JComboBox<Category>)e.getSource();
 		achievementTable.setModel(new AchievementInfoTableModel((Category) cb.getSelectedItem()));
+		achievementRankingTable.setModel(new AchievementRankingTableModel((Category) cb.getSelectedItem()));
 		
 		
 	}

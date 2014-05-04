@@ -1,10 +1,13 @@
 package info.ogpc.scoring.view;
 
 import info.ogpc.scoring.model.OGPCDataModel;
+import info.ogpc.scoring.model.ScoringSheet;
+import info.ogpc.scoring.model.Team;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.util.Locale.Category;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -25,6 +28,16 @@ public class Main {
 	public static void main(String[] args) {
 		// Initialize data model
 		dataModel = new OGPCDataModel();
+		for (Team team: dataModel.getTeams())
+			team.initScoringSheet();
+		
+		for (Team team: dataModel.getTeams()) {
+			ScoringSheet sheet = team.getScoringSheet((dataModel.getCategories().iterator().next()));
+			sheet.scoreAchievement("1", 10);
+			sheet.scoreAchievement("2", 10);
+			break;
+		}
+		
 		
 		//Launch the GUI
 		EventQueue.invokeLater(new Runnable() {

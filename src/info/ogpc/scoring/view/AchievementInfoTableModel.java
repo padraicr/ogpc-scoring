@@ -45,9 +45,9 @@ public class AchievementInfoTableModel implements TableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		int i = 0;
 		Achievement achievement = null;
-		for (Achievement tempAchievement  : dataModel.getAchievements(activeCategory)) {
+		for (String achievementId : dataModel.getAchievements(activeCategory).keySet()) {
 			if (i == rowIndex) {
-				achievement = tempAchievement;
+				achievement = dataModel.getAchievements(activeCategory).get(achievementId);
 				break;
 			} else
 				i++;
