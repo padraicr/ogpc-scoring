@@ -37,4 +37,15 @@ public class ScoringSheet {
 		return total;
 	}
 
+	public String printLine() {
+		StringBuilder sb = new StringBuilder();
+		for (String id : scoringMatrix.keySet()) {
+			sb.append(id+",");
+			sb.append(scoringMatrix.get(id)+",");
+		}
+		sb.append("END,");
+		
+		return sb.toString();
+	}
+
 }

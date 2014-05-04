@@ -3,6 +3,7 @@ package info.ogpc.scoring.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -12,6 +13,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import sun.text.normalizer.Trie.DataManipulate;
 
 public class MainWindow extends JPanel implements ChangeListener {
 	JTabbedPane contentPane;
@@ -55,5 +58,10 @@ public class MainWindow extends JPanel implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		summaryPage.updateSummary();
+		summaryPage.validate();
+		summaryPage.repaint();
+		Main.getDataModel().writeData();
+//		Main.getDataModel().readData();
+		
 	}
 }

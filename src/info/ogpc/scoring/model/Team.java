@@ -31,6 +31,7 @@ public class Team {
 
 	}
 	
+
 	@Override
 	public String toString() {
 		return name;
@@ -112,6 +113,66 @@ public class Team {
 		System.out.println("scoring achievement - "+achievement.getPointValue());
 		scoringSheet.scoreAchievement(achievementId, achievement.getPointValue());
 
+	}
+
+	public char[] printLine() {
+		StringBuilder outputLine = new StringBuilder();
+		outputLine.append(getTeamId()+",");
+		outputLine.append(getName()+",");
+		outputLine.append(getCoachLastName()+",");
+		outputLine.append(getCoachFirstName()+",");
+		outputLine.append(getSchoolType()+",");
+		outputLine.append(getSchoolName()+",");
+		outputLine.append(getNumberOfStudents()+",");
+		
+		for (Category category : scoringSheets.keySet()) {
+			ScoringSheet sheet = scoringSheets.get(category);
+			outputLine.append(category.getName()+",");
+			outputLine.append(sheet.printLine());
+		}
+		outputLine.append("EOL");
+		return outputLine.toString().toCharArray();
+	}
+
+	public Team(String data) {
+		//For File I/O, comma delimited string
+		String[] parsedData = data.split(",");
+		teamId = parsedData[0];
+		name = parsedData[1];
+		coachLastName = parsedData[2];
+		coachFirstName = parsedData[3];
+
+		if (parsedData[4].equals("HIGH_SCHOOL"))
+			schoolType = SchoolType.HIGH_SCHOOL;
+		else
+			schoolType = SchoolType.MIDDLE_SCHOOL;
+		
+		schoolName = parsedData[5];
+		numberOfStudents = new Integer(parsedData[6]);
+		System.out.println("teamId: "+teamId+" - "+ coachLastName+ " - " +coachFirstName+ " - " +name
+				+ " - " +schoolType+ " - " + schoolName+" - " +numberOfStudents);
+
+		OGPCDataModel dataModel = Main.getDataModel();
+		
+		Category category = dataModel.getCategory(parsedData[7]);
+		ScoringSheet tempSheet = new ScoringSheet(category);
+		scoringSheets = new HashMap<Category, ScoringSheet>();
+		for (int i = 8; i <= parsedData.length; i+=2) {
+			if (parsedData[i].equals("END")) {
+				i++; //increment the index to skip "END"
+				scoringSheets.put(category, tempSheet);
+				System.out.println("adding new sheet");
+
+				if (parsedData[i].equals("EOL")) //we've reached the end 
+					break;
+				
+				category = dataModel.getCategory(parsedData[i]);
+				tempSheet = new ScoringSheet(category);
+				i++;//increment index as we just handled the category name
+			}
+			tempSheet.scoreAchievement(parsedData[i], new Integer(parsedData[i+1]));
+		}
+	
 	}
 
 }

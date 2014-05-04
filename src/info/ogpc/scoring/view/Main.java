@@ -9,6 +9,7 @@ import info.ogpc.scoring.model.Team;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -32,17 +33,10 @@ public class Main {
 		for (Team team: dataModel.getTeams())
 			team.initScoringSheet();
 		
-		for (Team team : dataModel.getTeams()) {
-			for (Category category : team.getScoringSheets().keySet()) {
-				ScoringSheet sheet = team.getScoringSheet(category);
-				for (String id : category.getAchievements().keySet()) {
-					sheet.scoreAchievement(id, 1);
-				}
-				break;
-			}
-			break;
-		}
-	
+		File dataFile = new File("/home/padraic/tempData.txt");
+		if (dataFile.exists()) 
+			Main.getDataModel().readData();
+
 		//Launch the GUI
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
