@@ -1,5 +1,7 @@
 package info.ogpc.scoring.view;
 
+import info.ogpc.scoring.model.Achievement;
+import info.ogpc.scoring.model.Category;
 import info.ogpc.scoring.model.OGPCDataModel;
 import info.ogpc.scoring.model.ScoringSheet;
 import info.ogpc.scoring.model.Team;
@@ -7,7 +9,6 @@ import info.ogpc.scoring.model.Team;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.util.Locale.Category;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -31,14 +32,17 @@ public class Main {
 		for (Team team: dataModel.getTeams())
 			team.initScoringSheet();
 		
-		for (Team team: dataModel.getTeams()) {
-			ScoringSheet sheet = team.getScoringSheet((dataModel.getCategories().iterator().next()));
-			sheet.scoreAchievement("1", 10);
-			sheet.scoreAchievement("2", 10);
+		for (Team team : dataModel.getTeams()) {
+			for (Category category : team.getScoringSheets().keySet()) {
+				ScoringSheet sheet = team.getScoringSheet(category);
+				for (String id : category.getAchievements().keySet()) {
+					sheet.scoreAchievement(id, 1);
+				}
+				break;
+			}
 			break;
 		}
-		
-		
+	
 		//Launch the GUI
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

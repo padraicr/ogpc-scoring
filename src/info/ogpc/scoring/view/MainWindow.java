@@ -20,10 +20,12 @@ public class MainWindow extends JPanel {
 		contentPane = new JTabbedPane();
 
 		JComponent summaryPage = new SummaryPanel();
-		JComponent scoringPage = makeTextPanel("Panel #2");
+		JComponent scoringPage = new ScoringPanel();
 		JComponent teamInformation = new TeamInformationPanel();
 		JComponent Achievements = new AchievementInfoPanel();
-		summaryPage.setPreferredSize(new Dimension(1024,768));
+
+		contentPane.setPreferredSize(new Dimension(1024,768));
+		setMinimumSize(new Dimension(1024,768));
 
 		contentPane.addTab("Scoring Summary", summaryPage);
 		contentPane.addTab("Scoring Details", scoringPage);
@@ -31,8 +33,8 @@ public class MainWindow extends JPanel {
 		contentPane.addTab("Achievements", Achievements);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		add(contentPane);
 		contentPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		add(contentPane);
 	}
 
 	protected JComponent makeTextPanel(String text) {

@@ -1,5 +1,7 @@
 package info.ogpc.scoring.view;
 
+import info.ogpc.scoring.model.AchievementInfoTableModel;
+import info.ogpc.scoring.model.AchievementRankingTableModel;
 import info.ogpc.scoring.model.Category;
 import info.ogpc.scoring.model.OGPCDataModel;
 import info.ogpc.scoring.model.SchoolType;
@@ -22,7 +24,9 @@ public class AchievementInfoPanel extends JPanel implements ActionListener {
 	JComboBox<Category> categorySelector;
 	public AchievementInfoPanel () {
 		OGPCDataModel dataModel = Main.getDataModel();
-		setLayout(new GridBagLayout());
+		setLayout(new GridLayout(2, 4));
+//		setLayout(new GridBagLayout());
+		setPreferredSize(new Dimension(1024,768));
 
 		categorySelector = new JComboBox<Category>();
 		for (Category category : dataModel.getCategories()) {
@@ -40,7 +44,8 @@ public class AchievementInfoPanel extends JPanel implements ActionListener {
 		JScrollPane scrollRankingPane = new JScrollPane(achievementRankingTable);
 		achievementRankingTable.setFillsViewportHeight(true);
 		
-//		scrollPane.setPreferredSize(new Dimension(600,768));
+		scrollPane.setPreferredSize(new Dimension(600,768));
+		scrollRankingPane.setPreferredSize(new Dimension(600,768));
 		add(categorySelector);
 		add(scrollPane);
 		add(scrollRankingPane);

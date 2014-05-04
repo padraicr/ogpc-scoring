@@ -17,8 +17,9 @@ public class Team {
 	private String teamId;
 	private Map<Category, ScoringSheet> scoringSheets;
 
-	public Team(String _teamId, String _coachLastName, String _coachFirstName, String _name,
-			SchoolType _schoolType, String _schoolName, int _numberOfStudents) {
+	public Team(String _teamId, String _coachLastName, String _coachFirstName,
+			String _name, SchoolType _schoolType, String _schoolName,
+			int _numberOfStudents) {
 		teamId = _teamId;
 		coachLastName = _coachLastName;
 		coachFirstName = _coachFirstName;
@@ -27,16 +28,20 @@ public class Team {
 		schoolName = _schoolName;
 		numberOfStudents = _numberOfStudents;
 		scoringSheets = new HashMap<Category, ScoringSheet>();
-		
 
 	}
 	
-	public void initScoringSheet(){
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public void initScoringSheet() {
 		OGPCDataModel dataModel = Main.getDataModel();
 		for (Category category : dataModel.getCategories()) {
 			scoringSheets.put(category, new ScoringSheet(category));
 		}
-		
+
 	}
 
 	public String getTeamId() {
@@ -74,20 +79,27 @@ public class Team {
 	public Map<Category, ScoringSheet> getScoringSheets() {
 		return scoringSheets;
 	}
-	
+
 	public ScoringSheet getScoringSheet(Category category) {
 		ScoringSheet sheet = scoringSheets.get(category);
 		if (sheet != null)
 			return sheet;
 		else
-			throw new RuntimeException("getScoringSheet - Can not find scoringSheet for category:"+category);
+			throw new RuntimeException(
+					"getScoringSheet - Can not find scoringSheet for category:"
+							+ category);
 	}
 
-	public void scoreAchievement(Category category, String achievementId, Integer value) {
+	public void scoreAchievement(Category category, String achievementId,
+			Integer value) {
 		ScoringSheet scoringSheet = scoringSheets.get(category);
 		if (scoringSheet == null)
-			throw new RuntimeException("scoreAchievement - Can not find scoringSheet for category:"+category);
+			throw new RuntimeException(
+					"scoreAchievement - Can not find scoringSheet for category:"
+							+ category);
 		scoringSheet.scoreAchievement(achievementId, value);
-		
+
 	}
+
+
 }
