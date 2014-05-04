@@ -2,20 +2,25 @@ package info.ogpc.scoring.model;
 
 public class Achievement {
 	private String name;
+	private String description;
+	private Integer pointValue;
 	
-	private int value;
+	public Achievement(String _name, int _value, String _description) {
+		name = _name;
+		pointValue = new Integer(_value);
+		description = _description;
+	}
 	
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	public Integer getPointValue() {
+		return pointValue;
 	}
-	public int getValue() {
-		return value;
-	}
-	public void setValue(int value) {
-		this.value = value;
+	
+	public String getDescription() {
+		return description;
 	}
 
 }
