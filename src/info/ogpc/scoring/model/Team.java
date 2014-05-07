@@ -5,7 +5,7 @@ import info.ogpc.scoring.view.Main;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Team {
+public class Team implements Comparable<Team>{
 	private String coachLastName;
 	private String coachFirstName;
 	private String name;
@@ -171,6 +171,13 @@ public class Team {
 			tempSheet.scoreAchievement(parsedData[i], new Integer(parsedData[i+1]));
 		}
 	
+	}
+
+
+	@Override
+	public int compareTo(Team o) {
+		// TODO Auto-generated method stub
+		return name.compareToIgnoreCase(o.getName());
 	}
 
 }

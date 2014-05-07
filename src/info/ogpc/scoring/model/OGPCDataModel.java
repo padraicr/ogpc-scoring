@@ -1,6 +1,7 @@
 package info.ogpc.scoring.model;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map;
 import java.io.BufferedReader;
@@ -12,8 +13,8 @@ import java.io.PrintWriter;
 
 public class OGPCDataModel {
 
-	Collection<Category> categories = new LinkedList<Category>();
-	Collection<Team> teams = new LinkedList<Team>();
+	LinkedList<Category> categories = new LinkedList<Category>();
+	LinkedList<Team> teams = new LinkedList<Team>();
 
 	public OGPCDataModel() {
 
@@ -325,6 +326,7 @@ public class OGPCDataModel {
 		professionalism.addAchievement("18", "Impossible", 10,
 				"Game finished and released before the Main Event.");
 		categories.add(professionalism);
+		Collections.sort(categories);
 
 		File dataFile = new File("/Users/padraic/tempData.txt");
 		if (!dataFile.exists()) {
@@ -425,7 +427,10 @@ public class OGPCDataModel {
 
 			teams.add(new Team("935", "Bartlo", "Chris", "Wilson JV2",
 					SchoolType.HIGH_SCHOOL, "Wilson High School", 0));
+
+	
 		}
+
 	}
 
 	public String[] calculateBestInShow() {
@@ -490,6 +495,7 @@ public class OGPCDataModel {
 
 
 	public Collection<Category> getCategories() {
+		
 		return categories;
 	}
 
@@ -555,6 +561,7 @@ public class OGPCDataModel {
 			}
 			fileReader.close();
 			teams = tempTeams;
+			Collections.sort(teams);
 
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to read file");

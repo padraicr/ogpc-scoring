@@ -23,8 +23,7 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 	HashMap<JCheckBox, String> checkBoxMap;
 	
 	public CheckBoxPanel() {
-		setLayout(new GridLayout(10, 4));
-
+		setLayout(new GridLayout(10, 2));
 	}
 	
 	public void initCheckBoxes(Category _currentCategory, Team _currentTeam){
@@ -36,7 +35,7 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 		
 		for (String achievementId : currentCategory.getAchievements().keySet()) {
 			Achievement currentAchievement = currentCategory.getAchievements().get(achievementId);
-			JCheckBox checkBox = new JCheckBox(currentAchievement.getName());
+			JCheckBox checkBox = new JCheckBox(currentAchievement.getDisplayName());
 			checkBoxMap.put(checkBox,  achievementId);
 			checkBox.setToolTipText(currentAchievement.getDescription());
 			if (currentSheet.getAchievementValue(achievementId) > 0) {

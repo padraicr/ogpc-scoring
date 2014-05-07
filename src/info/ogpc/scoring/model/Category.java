@@ -3,7 +3,7 @@ package info.ogpc.scoring.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Category {
+public class Category implements Comparable<Category>{
 	private String name;
 	Map<String, Achievement> achievements;
 
@@ -33,4 +33,9 @@ public class Category {
 	public String toString() {
 		return getName();
 	}
+
+	@Override
+	public int compareTo(Category o) {
+		return name.compareTo(o.getName());
+		}
 }

@@ -36,10 +36,10 @@ public class MainWindow extends JPanel implements ChangeListener {
 		contentPane.setPreferredSize(new Dimension(1024, 768));
 		setMinimumSize(new Dimension(1024, 768));
 
-		contentPane.addTab("Scoring Summary", summaryPage);
+//		contentPane.addTab("Scoring Summary", summaryPage);
 		contentPane.addTab("Scoring Details", scoringPage);
-		contentPane.addTab("Team Information", teamInformation);
-		contentPane.addTab("Achievements", Achievements);
+//		contentPane.addTab("Team Information", teamInformation);
+//		contentPane.addTab("Achievements", Achievements);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
