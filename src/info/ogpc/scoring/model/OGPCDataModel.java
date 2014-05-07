@@ -4,13 +4,11 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
 
 public class OGPCDataModel {
 
@@ -328,7 +326,7 @@ public class OGPCDataModel {
 				"Game finished and released before the Main Event.");
 		categories.add(professionalism);
 
-		File dataFile = new File("/home/padraic/tempData.txt");
+		File dataFile = new File("/Users/padraic/tempData.txt");
 		if (!dataFile.exists()) {
 
 			teams.add(new Team("701", "Freman", "Patrick",
@@ -518,7 +516,7 @@ public class OGPCDataModel {
 		System.out.println("writing data");
 
 		try {
-			FileWriter write = new FileWriter("/home/padraic/tempData.txt",
+			FileWriter write = new FileWriter("/Users/padraic/tempData.txt",
 					false);
 			PrintWriter printLine = new PrintWriter(write);
 
@@ -536,17 +534,16 @@ public class OGPCDataModel {
 		System.out.println("reading data");
 
 		try {
-			FileReader fileReader = new FileReader("/home/padraic/tempData.txt");
+			FileReader fileReader = new FileReader("/Users/padraic/tempData.txt");
 			BufferedReader textReader = new BufferedReader(fileReader);
 			int numLines = 0;
-			String aLine;
-			while ((aLine = textReader.readLine()) != null) {
+			while ((textReader.readLine()) != null) {
 				numLines++;
 			}
 			textReader.close();
 			fileReader.close();
 
-			fileReader = new FileReader("/home/padraic/tempData.txt");
+			fileReader = new FileReader("/Users/padraic/tempData.txt");
 			textReader = new BufferedReader(fileReader);
 
 			LinkedList<Team> tempTeams = new LinkedList<Team>();

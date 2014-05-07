@@ -1,7 +1,5 @@
 package info.ogpc.scoring.view;
 
-import java.util.Collection;
-
 import info.ogpc.scoring.model.OGPCDataModel;
 import info.ogpc.scoring.model.SchoolType;
 import info.ogpc.scoring.model.Team;

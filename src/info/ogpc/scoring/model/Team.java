@@ -2,9 +2,7 @@ package info.ogpc.scoring.model;
 
 import info.ogpc.scoring.view.Main;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class Team {

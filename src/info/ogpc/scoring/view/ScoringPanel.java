@@ -1,20 +1,19 @@
 package info.ogpc.scoring.view;
 
-import info.ogpc.scoring.model.Achievement;
 import info.ogpc.scoring.model.Category;
 import info.ogpc.scoring.model.OGPCDataModel;
-import info.ogpc.scoring.model.ScoringSheet;
 import info.ogpc.scoring.model.Team;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -25,6 +24,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class ScoringPanel extends JPanel implements ListSelectionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	OGPCDataModel dataModel = Main.getDataModel();
 	JList<Category> categorySelector;
 	JList<Team> teamSelector;
@@ -33,12 +36,41 @@ public class ScoringPanel extends JPanel implements ListSelectionListener {
 	ButtonGroup rbGroup = new ButtonGroup();
 	Category activeCategory;
 	CheckBoxPanel checkBoxPanel = new CheckBoxPanel();
+	SchoolTypeAndCategoryPanel schoolTypeAndCategoryPanel = new SchoolTypeAndCategoryPanel();
 
 	public ScoringPanel() {
-
-		rbGroup.add(rbMiddleSchool);
-		rbGroup.add(rbHighSchool);
-
+		setLayout(new GridBagLayout());
+		setMinimumSize(new Dimension(1024,768));
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx=0;
+		c.gridy=0;
+		c.weightx = 0.2;
+	//	c.weighty = 0.2;
+		c.ipadx = 20;
+		c.insets = new Insets(5,5,5,5);
+		c.anchor = GridBagConstraints.NORTHWEST;
+		add(schoolTypeAndCategoryPanel,c);
+		
+		c.gridx=0;
+		c.gridy=1;
+		c.weightx = 0.2;
+		c.weighty = 0.3;
+		//c.ipadx = 20;
+		c.insets = new Insets(5,5,5,5);
+		add(new JLabel("School:"),c);
+	
+		JComboBox cbTeams = new JComboBox();
+		for (Team team : dataModel.getTeams()) {
+			cbTeams.addItem(team);
+		}
+	//	teamSelector = new JList<Team>(teamListModel);
+		//JScrollPane teamScrollPane = new JScrollPane(teamSelector);
+		//teamSelector.addListSelectionListener(this);
+		c.ipady = 20;
+		c.weighty=0.2;
+		add(cbTeams,c);
+		
+		
 		DefaultListModel<Category> categoryListModel = new DefaultListModel<Category>();
 		for (Category category : dataModel.getCategories()) {
 			categoryListModel.addElement(category);
@@ -57,11 +89,9 @@ public class ScoringPanel extends JPanel implements ListSelectionListener {
 
 		checkBoxPanel.setLayout(new GridLayout(10, 4));
 
-		add(rbMiddleSchool);
-		add(rbHighSchool);
-		add(teamScrollPane);
-		add(categoryScrollPane);
-		add(checkBoxPanel);
+//		add(teamScrollPane);
+	//	add(categoryScrollPane);
+		//add(checkBoxPanel);
 
 	}
 

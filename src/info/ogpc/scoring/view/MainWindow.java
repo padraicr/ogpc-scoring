@@ -3,20 +3,20 @@ package info.ogpc.scoring.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.io.File;
-
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import sun.text.normalizer.Trie.DataManipulate;
-
 public class MainWindow extends JPanel implements ChangeListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTabbedPane contentPane;
 	SummaryPanel summaryPage = new SummaryPanel();
 	JComponent scoringPage = new ScoringPanel();
@@ -49,7 +49,7 @@ public class MainWindow extends JPanel implements ChangeListener {
 	protected JComponent makeTextPanel(String text) {
 		JPanel panel = new JPanel(false);
 		JLabel filler = new JLabel(text);
-		filler.setHorizontalAlignment(JLabel.CENTER);
+		filler.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.setLayout(new GridLayout(1, 1));
 		panel.add(filler);
 		return panel;

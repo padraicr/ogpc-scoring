@@ -1,9 +1,7 @@
 package info.ogpc.scoring.model;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.Collections;
 
 import info.ogpc.scoring.view.Main;

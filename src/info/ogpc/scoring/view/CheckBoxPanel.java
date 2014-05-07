@@ -6,8 +6,6 @@ import info.ogpc.scoring.model.ScoringSheet;
 import info.ogpc.scoring.model.Team;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.HashMap;
@@ -16,6 +14,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 public class CheckBoxPanel extends JPanel implements ItemListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Category currentCategory;
 	Team currentTeam;
 	HashMap<JCheckBox, String> checkBoxMap;

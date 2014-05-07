@@ -1,26 +1,16 @@
 package info.ogpc.scoring.view;
 
-import info.ogpc.scoring.model.Achievement;
-import info.ogpc.scoring.model.Category;
 import info.ogpc.scoring.model.OGPCDataModel;
-import info.ogpc.scoring.model.ScoringSheet;
 import info.ogpc.scoring.model.Team;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.io.File;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.border.EmptyBorder;
 
 public class Main {
 
-	private JTabbedPane contentPane;
 	private static OGPCDataModel dataModel;
 
 	
@@ -33,12 +23,13 @@ public class Main {
 		for (Team team: dataModel.getTeams())
 			team.initScoringSheet();
 		
-		File dataFile = new File("/home/padraic/tempData.txt");
+		File dataFile = new File("/Users/padraic/tempData.txt");
 		if (dataFile.exists()) 
 			Main.getDataModel().readData();
 
 		//Launch the GUI
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					JFrame frame = new JFrame("OGPC Scoring");

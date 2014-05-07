@@ -1,17 +1,15 @@
 package info.ogpc.scoring.view;
 
-import info.ogpc.scoring.model.OGPCDataModel;
-import info.ogpc.scoring.model.SchoolType;
-
 import java.awt.Dimension;
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class TeamInformationPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTable teamTable;
 
 	public TeamInformationPanel () {

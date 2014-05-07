@@ -11,9 +11,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
 
 public class SummaryPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final JLabel lblBestInShow = new JLabel("Best In Show:");
 	final JLabel lblProChoice = new JLabel("Pro's Choice:");
 	final JLabel lblStudentChoice = new JLabel("Student's Choice:");
@@ -68,7 +71,7 @@ public class SummaryPanel extends JPanel {
 				.calculateStudentChoice());
 		lblRookieValue.setText(Main.getDataModel().calculateRookieAward());*/
 		for (Category category : dataModel.getCategories()) {
-			JList list = categoryLabelValues.get(category.getName());
+			JList<String> list = categoryLabelValues.get(category.getName());
 			DefaultListModel<String> lm = new DefaultListModel<String>();
 			for (String s : dataModel.calculateCategoryAward(category)) {
 				lm.addElement(s);
