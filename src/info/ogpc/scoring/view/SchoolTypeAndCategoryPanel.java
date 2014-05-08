@@ -13,8 +13,10 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,7 +27,7 @@ import sun.awt.HorizBagLayout;
 public class SchoolTypeAndCategoryPanel extends JPanel implements ActionListener{
 	SchoolTypePanel schoolTypePanel = new SchoolTypePanel();
 	CategoryTypePanel categoryTypePanel = new CategoryTypePanel();
-	JComboBox cbTeams = new JComboBox();
+	JComboBox<Team> cbTeams = new JComboBox<Team>();
 
 	public SchoolTypeAndCategoryPanel () {
 		JPanel containerPanel = new JPanel();
@@ -62,7 +64,8 @@ public class SchoolTypeAndCategoryPanel extends JPanel implements ActionListener
 				cbTeams.addItem(team);
 		}
 		cbTeams.setMaximumSize(new Dimension(20,20));
-		cbTeams.setPrototypeDisplayValue("123456789012345678901234");
+		//Dummy team only for display sizing purposes.
+		cbTeams.setPrototypeDisplayValue(new Team("","","","123456789012345678901234",SchoolType.HIGH_SCHOOL,"",0));
 
 		c = new GridBagConstraints();
 		c.insets = new Insets(2,2,5,20);
@@ -92,14 +95,22 @@ public class SchoolTypeAndCategoryPanel extends JPanel implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cbTeams.removeAll();
-		for (Team team : Main.getDataModel().getTeams()) {
-			String selected = schoolTypePanel.getSelection();
-			if (selected.equals(team.getSchoolType().toString()))
-				cbTeams.addItem(team);
-		}
-		cbTeams.validate();
-		cbTeams.repaint();
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+			//	cbTeams.removeAllItems();
+				 DefaultComboBoxModel<Team> model = new DefaultComboBoxModel<Team>();
+				
+				for (Team team : Main.getDataModel().getTeams()) {
+					String selected = schoolTypePanel.getSelection();
+					if (selected.equals(team.getSchoolType().toString()))
+						model.addElement(team);
+				}
+				cbTeams.setModel(model);
+				
+			}
+		});
 
 	}
 

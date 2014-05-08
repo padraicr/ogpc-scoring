@@ -179,5 +179,5 @@ public class Team implements Comparable<Team>{
 		// TODO Auto-generated method stub
 		return name.compareToIgnoreCase(o.getName());
 	}
-
+	
 }

@@ -78,7 +78,16 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		updateCheckBoxPanel();
+		System.out.println("got event");
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				updateCheckBoxPanel();
+				scoringTablePanel.updateData();
+			}
+		});
+
+
 	}
 
 	private void updateCheckBoxPanel() {
