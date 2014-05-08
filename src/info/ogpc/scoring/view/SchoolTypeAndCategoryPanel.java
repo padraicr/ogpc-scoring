@@ -102,4 +102,9 @@ public class SchoolTypeAndCategoryPanel extends JPanel implements ActionListener
 		cbTeams.repaint();
 
 	}
+
+	public String getSelectedSchoolType() {
+		// TODO Auto-generated method stub
+		return schoolTypePanel.getSelection();
+	}
 }

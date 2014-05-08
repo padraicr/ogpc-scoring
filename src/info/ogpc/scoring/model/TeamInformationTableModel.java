@@ -1,8 +1,6 @@
-package info.ogpc.scoring.view;
+package info.ogpc.scoring.model;
 
-import info.ogpc.scoring.model.OGPCDataModel;
-import info.ogpc.scoring.model.SchoolType;
-import info.ogpc.scoring.model.Team;
+import info.ogpc.scoring.view.Main;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;

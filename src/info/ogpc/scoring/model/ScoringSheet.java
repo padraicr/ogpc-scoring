@@ -17,6 +17,7 @@ public class ScoringSheet {
 		for (String achievementId : category.getAchievements().keySet()) {
 			scoringMatrix.put(achievementId, new Integer(0));
 		}
+	   
 	}
 
 	public void scoreAchievement(String id, Integer value) {

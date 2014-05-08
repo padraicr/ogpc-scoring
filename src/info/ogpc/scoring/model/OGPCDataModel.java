@@ -37,7 +37,7 @@ public class OGPCDataModel {
 		programming.addAchievement("5", "From the Depths", 30,
 				"Build your own engine.");
 		programming
-				.addAchievement("6", "---", 10,
+				.addAchievement("6", "From the Depths", 10,
 						"Use an existing engine and demonstrate use of its built-in functions.");
 		programming
 				.addAchievement("7", "Sharper Than Flat", 20,
@@ -45,13 +45,13 @@ public class OGPCDataModel {
 		programming
 				.addAchievement(
 						"8",
-						"---",
+						"Sharper Than Flat",
 						15,
 						"Game does not use 3D, but uses a pseudo-3D method such as parallax or isometric.");
 		programming
 				.addAchievement(
 						"9",
-						"---",
+						"Sharper Than Flat",
 						10,
 						"Game is 2D and uses z-indexing to properly order background and foreground objects.");
 		programming.addAchievement("10", "Ex Machina", 10,
@@ -63,7 +63,7 @@ public class OGPCDataModel {
 				.addAchievement("12", "Electric Flyswatter", 20,
 						"Design your own testing/debugging tool and explain how it was used.");
 		programming
-				.addAchievement("13", "---", 10,
+				.addAchievement("13", "Electric Flyswatter", 10,
 						"Use an existing testing/debugging tool and explain how it was used.");
 		programming
 				.addAchievement(
@@ -74,7 +74,7 @@ public class OGPCDataModel {
 		programming.addAchievement("15", "Couch Play", 25,
 				"Game uses networking, for multiplayer or otherwise.");
 		programming
-				.addAchievement("16", "---", 15,
+				.addAchievement("16", "Couch Play", 15,
 						"Game does not have networking but supports local multiplayer.");
 		programming.addAchievement("17", "Take Five", 5,
 				"Game can be paused - or pausing is unnecessary.");
@@ -104,7 +104,7 @@ public class OGPCDataModel {
 		gameMechanics
 				.addAchievement(
 						"4",
-						"---",
+						"Chance Encounter",
 						15,
 						"Demonstrate that game is deterministic and describe why that is important to the game.");
 		gameMechanics
@@ -143,7 +143,7 @@ public class OGPCDataModel {
 		Category artAndAssets = new Category("Art and Assets");
 		artAndAssets.addAchievement("1", "Scribblenaught", 20,
 				"All of the game's graphics were made by the team.");
-		artAndAssets.addAchievement("2", "---", 10,
+		artAndAssets.addAchievement("2", "Scribblenaught", 10,
 				"Only some of the game's graphics were made by the team.");
 		artAndAssets.addAchievement("3", "Inception", 5,
 				"Show off your concept art.");
@@ -157,13 +157,13 @@ public class OGPCDataModel {
 				"The graphical style is consistent.");
 		artAndAssets.addAchievement("6", "Still Life", 10,
 				"Use 3D models in the game.");
-		artAndAssets.addAchievement("7", "---", 10,
+		artAndAssets.addAchievement("7", "Still Life", 10,
 				"3D models are used to generate 2D sprites.");
 		artAndAssets.addAchievement("8", "Sting Chameleon", 5,
 				"Use dynamic lighting, shading, or coloring.");
 		artAndAssets.addAchievement("9", "Steamboat", 15,
 				"Most graphics are animated.");
-		artAndAssets.addAchievement("10", "---", 10,
+		artAndAssets.addAchievement("10", "Steamboat", 10,
 				"Some graphics are animated.");
 		artAndAssets.addAchievement("11", "All that Glitters", 5,
 				"Include particle effects.");
@@ -179,7 +179,7 @@ public class OGPCDataModel {
 				"Soundtrack was made by the team.");
 		artAndAssets.addAchievement("15", "Tracklist", 10,
 				"Soundtrack consists of more than one song.");
-		artAndAssets.addAchievement("16", "---", 5,
+		artAndAssets.addAchievement("16", "Tracklist", 5,
 				"Soundtrack consists of one song.");
 		artAndAssets.addAchievement("17", "Onomatopoeia", 10,
 				"Game has sound effects.");
@@ -198,7 +198,7 @@ public class OGPCDataModel {
 		Category themeAndStyle = new Category("Theme and Style");
 		themeAndStyle.addAchievement("1", "Theme Hospital", 20,
 				"Game is built completely around theme.");
-		themeAndStyle.addAchievement("2", "---", 10,
+		themeAndStyle.addAchievement("2", "Theme Hospital", 10,
 				"Game is somewhat connected to theme.");
 		themeAndStyle.addAchievement("3", "Citrus Twist", 5,
 				"Use the theme creatively by adding other elements to it.");
@@ -232,12 +232,12 @@ public class OGPCDataModel {
 		themeAndStyle
 				.addAchievement(
 						"15",
-						"---",
+						"Character Sheet",
 						10,
 						"Player is allowed to project their own personality onto the player character (i.e. silent or amnesiac).");
 		themeAndStyle.addAchievement("16", "Genre-Luc", 10,
 				"Game exists outside classic genre boundaries");
-		themeAndStyle.addAchievement("17", "---", 5,
+		themeAndStyle.addAchievement("17", "Genre-Luc", 5,
 				"Game fits into a specific genre");
 		themeAndStyle.addAchievement("18", "Aardwulf", 5,
 				"Include an easter egg or secret.");
@@ -318,7 +318,7 @@ public class OGPCDataModel {
 		professionalism.addAchievement("15", "In the Papers", 10,
 				"Receive local news coverage about your team.");
 		professionalism
-				.addAchievement("16", "---", 10,
+				.addAchievement("16", "In the Papers", 10,
 						"Do not receive coverage, but create a press release about your team.");
 		professionalism
 				.addAchievement("17", "License to Win", 5,

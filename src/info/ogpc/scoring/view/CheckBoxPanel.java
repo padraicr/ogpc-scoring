@@ -24,6 +24,8 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 	
 	public CheckBoxPanel() {
 		setLayout(new GridLayout(10, 2));
+		checkBoxMap = new HashMap<JCheckBox, String>();
+
 	}
 	
 	public void initCheckBoxes(Category _currentCategory, Team _currentTeam){
@@ -55,5 +57,16 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 		else
 			currentTeam.scoreAchievement(currentCategory, id, 0);
 			
+	}
+	public void addItemListener(ItemListener il) {
+		for(JCheckBox box : checkBoxMap.keySet()) {
+			box.addItemListener(il);
+		}
+	}
+
+	public void removeItemListener(ItemListener il) {
+		for(JCheckBox box : checkBoxMap.keySet()) {
+			box.removeItemListener(il);
+		}
 	}
 }
