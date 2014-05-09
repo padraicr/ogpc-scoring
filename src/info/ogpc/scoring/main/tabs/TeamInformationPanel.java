@@ -24,7 +24,7 @@ public class TeamInformationPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	JTable teamTable;
 
-	public TeamInformationPanel () {
+	public TeamInformationPanel() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
@@ -33,44 +33,49 @@ public class TeamInformationPanel extends JPanel {
 		c.weightx = 0.5;
 		c.weighty = 0.5;
 		teamTable = new JTable(new TeamInformationTableModel()) {
-		    public Component prepareRenderer(
-			        TableCellRenderer renderer, int row, int column)
-			    {
-			        Component c = super.prepareRenderer(renderer, row, column);
-			        if ((row % 2) == 0)
-			        	c.setBackground(new Color(221, 243, 202));
-			        else
-			        	c.setBackground(Color.WHITE);
-			        
-			        if (c instanceof JComponent) {
-			        	((JComponent) c).setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-			        }
-			        
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
-			        return c;
-			    }
-			};
-	
-			DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-			rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-				teamTable.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-			((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
-		    .setHorizontalAlignment(JLabel.CENTER);
-			teamTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
-		((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
-	    .setHorizontalAlignment(JLabel.CENTER);
+			public Component prepareRenderer(TableCellRenderer renderer,
+					int row, int column) {
+				Component c = super.prepareRenderer(renderer, row, column);
+				if ((row % 2) == 0)
+					c.setBackground(new Color(221, 243, 202));
+				else
+					c.setBackground(Color.WHITE);
+
+				if (c instanceof JComponent) {
+					((JComponent) c).setBorder(BorderFactory
+							.createLineBorder(Color.LIGHT_GRAY));
+				}
+
+				return c;
+			}
+		};
+
+		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+		rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		teamTable.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+		((DefaultTableCellRenderer) teamTable.getTableHeader()
+				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
+		teamTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+		((DefaultTableCellRenderer) teamTable.getTableHeader()
+				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
 		teamTable.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
-	((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
-    .setHorizontalAlignment(JLabel.CENTER);
+		((DefaultTableCellRenderer) teamTable.getTableHeader()
+				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
 		JScrollPane scrollPane = new JScrollPane(teamTable);
 		teamTable.setFillsViewportHeight(true);
 		teamTable.setAutoCreateRowSorter(true);
 
-		
-		//scrollPane.setPreferredSize(new Dimension(1024,768));
-		add(scrollPane,c);
+		add(scrollPane, c);
 
-		
 	}
 
 }

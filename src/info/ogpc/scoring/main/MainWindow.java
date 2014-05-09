@@ -1,5 +1,6 @@
 package info.ogpc.scoring.main;
 
+import info.ogpc.scoring.main.tabs.OrdinalPanel;
 import info.ogpc.scoring.main.tabs.ScoringPanel;
 import info.ogpc.scoring.main.tabs.TeamInformationPanel;
 
@@ -32,12 +33,14 @@ public class MainWindow extends JPanel implements ChangeListener {
 
 		JComponent scoringPage = new ScoringPanel();
 		JComponent teamInformation = new TeamInformationPanel();
+		JComponent ordinalPanel = new OrdinalPanel();
 
 		contentPane.setPreferredSize(new Dimension(1024, 768));
 		setMinimumSize(new Dimension(1024, 768));
 
 		contentPane.addTab("Scoring Details", scoringPage);
 		contentPane.addTab("Team Information", teamInformation);
+		contentPane.addTab("Ordinal Ranking", ordinalPanel);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);

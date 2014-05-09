@@ -6,9 +6,11 @@ import java.util.Map;
 public class Category implements Comparable<Category>{
 	private String name;
 	Map<String, Achievement> achievements;
+	private Integer ranking;
 
-	public Category(String _name) {
+	public Category(String _name, Integer _ranking) {
 		name = _name;
+		ranking = _ranking;
 		achievements = new HashMap<String, Achievement>();
 	}
 
@@ -27,6 +29,10 @@ public class Category implements Comparable<Category>{
 
 	public String getName() {
 		return name;
+	}
+
+	public Integer getRanking() {
+		return ranking;
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class OGPCDataModel {
 		// save time, I'm having the teams
 		// initialize scoring sheets up front which require that the categories
 		// be loaded first.
-		Category programming = new Category("Programming");
+		Category programming = new Category("Programming",1);
 		programming.addAchievement("1","Way of the Wanderer",15,"Show a diagram of at least one element of the game logic (i.e. decision tree, AI process, player progression)");
 		programming.addAchievement("2", "Objectify", 5,
 				"Use object-oriented programming.");
@@ -89,7 +89,7 @@ public class OGPCDataModel {
 				"Controls are configurable.");
 		categories.add(programming);
 
-		Category gameMechanics = new Category("Game Mechanics");
+		Category gameMechanics = new Category("Game Mechanics",2);
 		gameMechanics.addAchievement("1", "Reflex Scope", 15,
 				"Explain how the scope of the game was limited or reduced.");
 		gameMechanics
@@ -140,7 +140,7 @@ public class OGPCDataModel {
 				"Game has optional additional challenges.");
 		categories.add(gameMechanics);
 
-		Category artAndAssets = new Category("Art and Assets");
+		Category artAndAssets = new Category("Art and Assets",3);
 		artAndAssets.addAchievement("1", "Scribblenaught", 20,
 				"All of the game's graphics were made by the team.");
 		artAndAssets.addAchievement("2", "Scribblenaught", 10,
@@ -195,7 +195,7 @@ public class OGPCDataModel {
 				"Audio is well-synced with visuals.");
 		categories.add(artAndAssets);
 
-		Category themeAndStyle = new Category("Theme and Style");
+		Category themeAndStyle = new Category("Theme and Style",4);
 		themeAndStyle.addAchievement("1", "Theme Hospital", 20,
 				"Game is built completely around theme.");
 		themeAndStyle.addAchievement("2", "Theme Hospital", 10,
@@ -247,7 +247,7 @@ public class OGPCDataModel {
 				"Game features character development.");
 		categories.add(themeAndStyle);
 
-		Category Teamwork = new Category("Teamwork");
+		Category Teamwork = new Category("Teamwork",5);
 		Teamwork.addAchievement("1", "Really Impressive Title", 5,
 				"Team has a name.");
 		Teamwork.addAchievement("2", "Character Class", 10,
@@ -279,7 +279,7 @@ public class OGPCDataModel {
 				"Use source control - or back up multiple versions of the source.");
 		categories.add(Teamwork);
 
-		Category professionalism = new Category("Professionalism");
+		Category professionalism = new Category("Professionalism",6);
 		professionalism.addAchievement("1", "Emcee", 10,
 				"Give a short presentation on your game.");
 		professionalism.addAchievement("2", "Chorus of Voices", 10,

@@ -40,15 +40,15 @@ public class ScoringTablePanel extends JPanel{
 		data.loadData(schoolType);
 		teamTable = new JTable(data) {
 		
-			    public Component prepareRenderer(
+			    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+				public Component prepareRenderer(
 			        TableCellRenderer renderer, int row, int column)
 			    {
 			        Component c = super.prepareRenderer(renderer, row, column);
-			/*        if ((row % 2) == 1)
-			        	c.setBackground(new Color(221, 243, 202));
-			        else
-			        	c.setBackground(Color.WHITE);*/
-			        
 			        if (c instanceof JComponent) {
 			        	((JComponent) c).setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 			        }
