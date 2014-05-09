@@ -13,28 +13,28 @@ public class Main {
 
 	private static OGPCDataModel dataModel;
 
-	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		// Initialize data model
 		dataModel = new OGPCDataModel();
-		for (Team team: dataModel.getTeams())
+		for (Team team : dataModel.getTeams())
 			team.initScoringSheet();
-		
+
 		File dataFile = new File("/Users/padraic/tempData.txt");
-		if (dataFile.exists()) 
+		if (dataFile.exists())
 			Main.getDataModel().readData();
 
-		//Launch the GUI
+		// Launch the GUI
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					JFrame frame = new JFrame("OGPC Scoring");
 					frame.setBounds(100, 100, 1200, 800);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					;
 					frame.add(new MainWindow(), BorderLayout.CENTER);
 					frame.pack();
 					frame.setVisible(true);
@@ -44,10 +44,9 @@ public class Main {
 			}
 		});
 	}
-	
+
 	public static OGPCDataModel getDataModel() {
 		return dataModel;
 	}
-
 
 }

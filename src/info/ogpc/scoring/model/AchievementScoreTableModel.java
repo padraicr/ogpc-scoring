@@ -8,7 +8,8 @@ import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class AchievementScoreTableModel extends AbstractTableModel implements TableModel {
+public class AchievementScoreTableModel extends AbstractTableModel implements
+		TableModel {
 	/**
 	 * 
 	 */
@@ -19,7 +20,8 @@ public class AchievementScoreTableModel extends AbstractTableModel implements Ta
 	private ArrayList<ArrayList<Object>> data = new ArrayList<ArrayList<Object>>();
 
 	public AchievementScoreTableModel() {
-		data= new ArrayList<ArrayList<Object>>();
+		data = new ArrayList<ArrayList<Object>>();
+		columnNames.add("Team ID");
 		columnNames.add("Team");
 		columnNames.add("Best In Show");
 		for (Category category : dataModel.getCategories())
@@ -45,7 +47,7 @@ public class AchievementScoreTableModel extends AbstractTableModel implements Ta
 	public Class<?> getColumnClass(int columnIndex) {
 		if (columnIndex == 0)
 			return String.class;
-		else 
+		else
 			return Integer.class;
 	}
 
@@ -60,15 +62,18 @@ public class AchievementScoreTableModel extends AbstractTableModel implements Ta
 
 	}
 
-
 	public void loadData(String activeSchoolType) {
 		data = new ArrayList<ArrayList<Object>>();
-		
+
 		for (Team team : dataModel.getTeams()) {
 			ArrayList<Object> rowData = new ArrayList<Object>();
 			if (activeSchoolType.equalsIgnoreCase(team.getSchoolType()
 					.toString())) {
-				rowData.add(team.getName());
+				rowData.add(team.getTeamId());
+				if (team.isRookie())
+					rowData.add("*" + team.getName());
+				else
+					rowData.add(team.getName());
 				rowData.add(team.calculateBestInShow());
 				for (Category category : dataModel.getCategories()) {
 					ScoringSheet sheet = team.getScoringSheet(category);

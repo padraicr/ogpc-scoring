@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -25,22 +26,25 @@ public class MainWindow extends JPanel implements ChangeListener {
 	JTabbedPane contentPane;
 	JComponent scoringPage = new ScoringPanel();
 	JComponent teamInformation = new TeamInformationPanel();
+	OrdinalPanel ordinalPanel = new OrdinalPanel();
 
 	public MainWindow() {
 
 		contentPane = new JTabbedPane();
 		contentPane.addChangeListener(this);
 
-		JComponent scoringPage = new ScoringPanel();
-		JComponent teamInformation = new TeamInformationPanel();
-		JComponent ordinalPanel = new OrdinalPanel();
+		/*
+		 * ScoringPanel scoringPage = new ScoringPanel(); JComponent
+		 * teamInformation = new TeamInformationPanel(); JComponent ordinalPanel
+		 * = new OrdinalPanel();
+		 */
 
-		contentPane.setPreferredSize(new Dimension(1024, 768));
-		setMinimumSize(new Dimension(1024, 768));
+		contentPane.setPreferredSize(new Dimension(1200, 768));
+		setMinimumSize(new Dimension(1200, 768));
 
 		contentPane.addTab("Scoring Details", scoringPage);
-		contentPane.addTab("Team Information", teamInformation);
 		contentPane.addTab("Ordinal Ranking", ordinalPanel);
+		contentPane.addTab("Team Information", teamInformation);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -59,7 +63,13 @@ public class MainWindow extends JPanel implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		Main.getDataModel().writeData();
-//		Main.getDataModel().readData();
-		
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				ordinalPanel.loadData();
+			}
+		});
+
 	}
 }

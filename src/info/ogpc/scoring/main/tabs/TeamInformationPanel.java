@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,6 +37,7 @@ public class TeamInformationPanel extends JPanel {
 			 */
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
@@ -57,19 +57,22 @@ public class TeamInformationPanel extends JPanel {
 
 		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
 		rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		teamTable.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
 		((DefaultTableCellRenderer) teamTable.getTableHeader()
-				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-		
+				.getDefaultRenderer())
+				.setHorizontalAlignment(SwingConstants.CENTER);
+
 		teamTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
 		((DefaultTableCellRenderer) teamTable.getTableHeader()
-				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-		
+				.getDefaultRenderer())
+				.setHorizontalAlignment(SwingConstants.CENTER);
+
 		teamTable.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
 		((DefaultTableCellRenderer) teamTable.getTableHeader()
-				.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-		
+				.getDefaultRenderer())
+				.setHorizontalAlignment(SwingConstants.CENTER);
+
 		JScrollPane scrollPane = new JScrollPane(teamTable);
 		teamTable.setFillsViewportHeight(true);
 		teamTable.setAutoCreateRowSorter(true);

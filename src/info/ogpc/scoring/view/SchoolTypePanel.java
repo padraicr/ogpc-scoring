@@ -21,7 +21,7 @@ public class SchoolTypePanel extends JPanel {
 	JRadioButton rbMiddleSchool = new JRadioButton("Middle School");
 	ButtonGroup rbGroup = new ButtonGroup();
 
-	public SchoolTypePanel () {
+	public SchoolTypePanel() {
 		setLayout(new GridLayout(2, 1));
 		rbHighSchool.setName(SchoolType.HIGH_SCHOOL.toString());
 		rbMiddleSchool.setName(SchoolType.MIDDLE_SCHOOL.toString());
@@ -31,18 +31,18 @@ public class SchoolTypePanel extends JPanel {
 		rbMiddleSchool.setSelected(true);
 		add(rbMiddleSchool);
 		add(rbHighSchool);
-		
-		setMaximumSize(new Dimension(1,1));
+
+		setMaximumSize(new Dimension(1, 1));
 	}
-	
+
 	public void addActionListener(ActionListener aListener) {
 		rbMiddleSchool.addActionListener(aListener);
 		rbHighSchool.addActionListener(aListener);
 	}
-	
+
 	public String getSelection() {
 		Enumeration<AbstractButton> buttons = rbGroup.getElements();
-		while (buttons.hasMoreElements())	{
+		while (buttons.hasMoreElements()) {
 			AbstractButton button = buttons.nextElement();
 			if (button.isSelected())
 				return button.getName();

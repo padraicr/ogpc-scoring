@@ -1,9 +1,9 @@
 package info.ogpc.scoring.model;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class Category implements Comparable<Category>{
+public class Category implements Comparable<Category> {
 	private String name;
 	Map<String, Achievement> achievements;
 	private Integer ranking;
@@ -11,15 +11,16 @@ public class Category implements Comparable<Category>{
 	public Category(String _name, Integer _ranking) {
 		name = _name;
 		ranking = _ranking;
-		achievements = new HashMap<String, Achievement>();
+		achievements = new TreeMap<String, Achievement>();
 	}
 
-	public void addAchievement(String id, String name, int value, String description) {
+	public void addAchievement(String id, String name, int value,
+			String description) {
 		if (achievements.put(id, new Achievement(name, value, description)) != null)
 			throw new RuntimeException("Duplicate achievement ID found");
 	}
 
-	public Map<String,Achievement> getAchievements() {
+	public Map<String, Achievement> getAchievements() {
 		return achievements;
 	}
 
@@ -42,6 +43,6 @@ public class Category implements Comparable<Category>{
 
 	@Override
 	public int compareTo(Category o) {
-		return name.compareTo(o.getName());
-		}
+		return ranking.compareTo(o.getRanking());
+	}
 }

@@ -5,7 +5,7 @@ import info.ogpc.scoring.main.Main;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Team implements Comparable<Team>{
+public class Team implements Comparable<Team> {
 	private String coachLastName;
 	private String coachFirstName;
 	private String name;
@@ -29,7 +29,6 @@ public class Team implements Comparable<Team>{
 		scoringSheets = new HashMap<Category, ScoringSheet>();
 		isRookie = new Boolean(_isRookie);
 	}
-	
 
 	@Override
 	public String toString() {
@@ -97,7 +96,7 @@ public class Team implements Comparable<Team>{
 			throw new RuntimeException(
 					"scoreAchievement - Can not find scoringSheet for category:"
 							+ category);
-		System.out.println("scoring achievement - "+value);
+		System.out.println("scoring achievement - " + value);
 		scoringSheet.scoreAchievement(achievementId, value);
 
 	}
@@ -109,25 +108,27 @@ public class Team implements Comparable<Team>{
 					"scoreAchievement - Can not find scoringSheet for category:"
 							+ category);
 		Achievement achievement = category.getAchievement(achievementId);
-		System.out.println("scoring achievement - "+achievement.getPointValue());
-		scoringSheet.scoreAchievement(achievementId, achievement.getPointValue());
+		System.out.println("scoring achievement - "
+				+ achievement.getPointValue());
+		scoringSheet.scoreAchievement(achievementId,
+				achievement.getPointValue());
 
 	}
 
 	public char[] printLine() {
 		StringBuilder outputLine = new StringBuilder();
-		outputLine.append(getTeamId()+",");
-		outputLine.append(getName()+",");
-		outputLine.append(getCoachLastName()+",");
-		outputLine.append(getCoachFirstName()+",");
-		outputLine.append(getSchoolType()+",");
-		outputLine.append(getSchoolName()+",");
-		outputLine.append(getNumberOfStudents()+",");
-		outputLine.append(isRookie()+",");
+		outputLine.append(getTeamId() + ",");
+		outputLine.append(getName() + ",");
+		outputLine.append(getCoachLastName() + ",");
+		outputLine.append(getCoachFirstName() + ",");
+		outputLine.append(getSchoolType() + ",");
+		outputLine.append(getSchoolName() + ",");
+		outputLine.append(getNumberOfStudents() + ",");
+		outputLine.append(isRookie() + ",");
 
 		for (Category category : scoringSheets.keySet()) {
 			ScoringSheet sheet = scoringSheets.get(category);
-			outputLine.append(category.getName()+",");
+			outputLine.append(category.getName() + ",");
 			outputLine.append(sheet.printLine());
 		}
 		outputLine.append("EOL");
@@ -137,7 +138,7 @@ public class Team implements Comparable<Team>{
 	public Team(String data) {
 		OGPCDataModel dataModel = Main.getDataModel();
 
-		//For File I/O, comma delimited string
+		// For File I/O, comma delimited string
 		String[] parsedData = data.split(",");
 		teamId = parsedData[0];
 		name = parsedData[1];
@@ -148,50 +149,47 @@ public class Team implements Comparable<Team>{
 			schoolType = SchoolType.HIGH_SCHOOL;
 		else
 			schoolType = SchoolType.MIDDLE_SCHOOL;
-		
+
 		schoolName = parsedData[5];
 		numberOfStudents = new Integer(parsedData[6]);
 		isRookie = new Boolean(parsedData[7]);
 		System.out.println(data);
 
-		System.out.println("teamId: "+teamId+" - "+ coachLastName+ " - " +coachFirstName+ " - " +name
-				+ " - " +schoolType+ " - " + schoolName+" - " +numberOfStudents + " - "+ isRookie);
+		System.out.println("teamId: " + teamId + " - " + coachLastName + " - "
+				+ coachFirstName + " - " + name + " - " + schoolType + " - "
+				+ schoolName + " - " + numberOfStudents + " - " + isRookie);
 		isRookie = new Boolean(parsedData[7]);
-		
+
 		Category category = dataModel.getCategory(parsedData[8]);
 		ScoringSheet tempSheet = new ScoringSheet(category);
 		scoringSheets = new HashMap<Category, ScoringSheet>();
-		for (int i = 9; i <= parsedData.length; i+=2) {
+		for (int i = 9; i <= parsedData.length; i += 2) {
 			if (parsedData[i].equals("END")) {
-				i++; //increment the index to skip "END"
+				i++; // increment the index to skip "END"
 				scoringSheets.put(category, tempSheet);
 				System.out.println("adding new sheet");
 
-				if (parsedData[i].equals("EOL")) //we've reached the end 
+				if (parsedData[i].equals("EOL")) // we've reached the end
 					break;
-				
+
 				category = dataModel.getCategory(parsedData[i]);
 				tempSheet = new ScoringSheet(category);
-				i++;//increment index as we just handled the category name
+				i++;// increment index as we just handled the category name
 			}
-			tempSheet.scoreAchievement(parsedData[i], new Integer(parsedData[i+1]));
+			tempSheet.scoreAchievement(parsedData[i], new Integer(
+					parsedData[i + 1]));
 		}
-		
-	
-	}
 
+	}
 
 	@Override
 	public int compareTo(Team o) {
-		// TODO Auto-generated method stub
 		return name.compareToIgnoreCase(o.getName());
 	}
-
 
 	public boolean isRookie() {
 		return isRookie;
 	}
-
 
 	public Integer calculateBestInShow() {
 		Integer total = new Integer(0);
@@ -202,10 +200,9 @@ public class Team implements Comparable<Team>{
 		return total;
 	}
 
-
 	public void setRookie(boolean selected) {
 		isRookie = selected;
-		
+
 	}
-	
+
 }

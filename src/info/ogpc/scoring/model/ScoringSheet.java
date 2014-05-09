@@ -17,7 +17,7 @@ public class ScoringSheet {
 		for (String achievementId : category.getAchievements().keySet()) {
 			scoringMatrix.put(achievementId, new Integer(0));
 		}
-	   
+
 	}
 
 	public void scoreAchievement(String id, Integer value) {
@@ -41,11 +41,11 @@ public class ScoringSheet {
 	public String printLine() {
 		StringBuilder sb = new StringBuilder();
 		for (String id : scoringMatrix.keySet()) {
-			sb.append(id+",");
-			sb.append(scoringMatrix.get(id)+",");
+			sb.append(id + ",");
+			sb.append(scoringMatrix.get(id) + ",");
 		}
 		sb.append("END,");
-		
+
 		return sb.toString();
 	}
 

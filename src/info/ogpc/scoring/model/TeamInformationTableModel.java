@@ -7,8 +7,8 @@ import javax.swing.table.TableModel;
 
 public class TeamInformationTableModel implements TableModel {
 	OGPCDataModel dataModel = Main.getDataModel();
-	String[] columnNames = { "Team ID", "Team Name", "Type", "Coach", "Organization",
-			"Number of Students", "Rookie" };
+	String[] columnNames = { "Team ID", "Team Name", "Type", "Coach",
+			"Organization", "Number of Students", "Rookie" };
 
 	@Override
 	public int getRowCount() {
@@ -46,9 +46,10 @@ public class TeamInformationTableModel implements TableModel {
 			} else
 				i++;
 		}
-		
+
 		if (team == null)
-			throw new RuntimeException("Unable to find data at row:"+rowIndex+" column:"+columnIndex);
+			throw new RuntimeException("Unable to find data at row:" + rowIndex
+					+ " column:" + columnIndex);
 
 		switch (columnIndex) {
 		case 0:
@@ -58,9 +59,9 @@ public class TeamInformationTableModel implements TableModel {
 		case 2:
 			if (team.getSchoolType() == SchoolType.HIGH_SCHOOL)
 				return "High School";
-			else  if (team.getSchoolType() == SchoolType.MIDDLE_SCHOOL)
+			else if (team.getSchoolType() == SchoolType.MIDDLE_SCHOOL)
 				return "Middle School";
-			else 
+			else
 				return team.getSchoolType();
 		case 3:
 			return team.getCoachName();
@@ -69,12 +70,12 @@ public class TeamInformationTableModel implements TableModel {
 		case 5:
 			return team.getNumberOfStudents();
 		case 6:
-			if (team.isRookie()) 
+			if (team.isRookie())
 				return "Yes";
 			else
 				return "";
-		default:	
-			throw new RuntimeException("Invalide column:"+columnIndex);
+		default:
+			throw new RuntimeException("Invalide column:" + columnIndex);
 		}
 	}
 

@@ -19,12 +19,14 @@ public class OrdinalTableModel extends AbstractTableModel implements TableModel 
 	private ArrayList<ArrayList<Object>> data = new ArrayList<ArrayList<Object>>();
 
 	public OrdinalTableModel() {
-		data= new ArrayList<ArrayList<Object>>();
+		data = new ArrayList<ArrayList<Object>>();
+		columnNames.add("Team ID");
 		columnNames.add("Team");
 		columnNames.add("Best In Show");
 		for (Category category : dataModel.getCategories())
 			columnNames.add(category.getName());
 	}
+
 	@Override
 	public int getRowCount() {
 		return data.size();
@@ -42,7 +44,10 @@ public class OrdinalTableModel extends AbstractTableModel implements TableModel 
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		return String.class;
+		if (columnIndex <= 1)
+			return String.class;
+		else
+			return Integer.class;
 	}
 
 	@Override
@@ -71,16 +76,22 @@ public class OrdinalTableModel extends AbstractTableModel implements TableModel 
 		// N/A No model changes
 
 	}
-	
+
 	public void loadData(String activeSchoolType) {
 		data = new ArrayList<ArrayList<Object>>();
-		ArrayList<ArrayList<Object>> teamScores = new ArrayList<ArrayList<Object>>();;
-		
+		ArrayList<ArrayList<Object>> teamScores = new ArrayList<ArrayList<Object>>();
+		;
+
 		for (Team team : dataModel.getTeams()) {
 			ArrayList<Object> rowData = new ArrayList<Object>();
 			if (activeSchoolType.equalsIgnoreCase(team.getSchoolType()
 					.toString())) {
-				rowData.add(team.getName());
+				rowData.add(team.getTeamId());
+				if (team.isRookie())
+					rowData.add("*" + team.getName());
+				else
+					rowData.add(team.getName());
+
 				rowData.add(team.calculateBestInShow());
 				for (Category category : dataModel.getCategories()) {
 					ScoringSheet sheet = team.getScoringSheet(category);
@@ -88,55 +99,48 @@ public class OrdinalTableModel extends AbstractTableModel implements TableModel 
 				}
 				teamScores.add(rowData);
 			}
-		
+
 		}
-		System.out.println("size="+teamScores.size());
-		
-		//rowData.add(teamList);
-		ArrayList orderedScores =  new ArrayList();
+		// rowData.add(teamList);
+		ArrayList orderedScores = new ArrayList();
 
 		int i = 1;
-		//int column = 1;
-		for (int column = 1; column < teamScores.get(0).size();column++) {
-			ArrayList<Integer> scores =  new ArrayList<Integer>();
+		// int column = 1;
+		for (int column = 2; column < teamScores.get(0).size(); column++) {
+			ArrayList<Integer> scores = new ArrayList<Integer>();
 
 			for (int row = 0; row < teamScores.size(); row++) {
-				scores.add(new Integer(teamScores.get(row).get(column).toString()));	
+				scores.add(new Integer(teamScores.get(row).get(column)
+						.toString()));
 			}
 			Collections.sort(scores);
 			orderedScores.add(scores);
 		}
-			
-		
-		for (int row = 0; row < teamScores.size(); row++){
-			ArrayList<Object>  rowData = new ArrayList<Object>();
+
+		for (int row = 0; row < teamScores.size(); row++) {
+			ArrayList<Object> rowData = new ArrayList<Object>();
+
 			rowData.add(teamScores.get(row).get(0));
-			System.out.println("team="+teamScores.get(row)+teamScores.get(0).size()+" "+orderedScores.size());
-			for (int column = 1; column < teamScores.get(0).size();column++) {
+			rowData.add(teamScores.get(row).get(1));
+
+			for (int column = 2; column < teamScores.get(0).size(); column++) {
 				int ordinal = 1;
-				ArrayList orderedScore = (ArrayList) orderedScores.get(column-1);
+				ArrayList orderedScore = (ArrayList) orderedScores
+						.get(column - 2);
 
-				for (int scoreIndex = orderedScore.size()-1; scoreIndex >= 0; scoreIndex--) {
-
-					System.out.println("checking-"+teamScores.get(row).get(column) + " vs "+ orderedScore.get(scoreIndex)+" "+teamScores.get(row).get(column).equals(orderedScore.get(scoreIndex)));
-					if (teamScores.get(row).get(column).equals(orderedScore.get(scoreIndex))){
-	
+				for (int scoreIndex = orderedScore.size() - 1; scoreIndex >= 0; scoreIndex--) {
+					if (teamScores.get(row).get(column)
+							.equals(orderedScore.get(scoreIndex)))
 						break;
-					}
 					else
 						ordinal++;
-						
 				}
-				System.out.println("checking score for="+teamScores.get(row).get(column)+" ord:"+ordinal);
 				rowData.add(ordinal);
 
 			}
 			data.add(rowData);
 		}
-		
-		System.out.println("data="+data.size()+", "+data.get(0).size());
 
-		
 		fireTableDataChanged();
 	}
 

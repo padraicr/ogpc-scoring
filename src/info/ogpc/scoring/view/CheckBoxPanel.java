@@ -13,7 +13,7 @@ import java.util.HashMap;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
-public class CheckBoxPanel extends JPanel implements ItemListener{
+public class CheckBoxPanel extends JPanel implements ItemListener {
 	/**
 	 * 
 	 */
@@ -21,23 +21,26 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 	Category currentCategory;
 	Team currentTeam;
 	HashMap<JCheckBox, String> checkBoxMap;
-	
+
 	public CheckBoxPanel() {
-		setLayout(new GridLayout(7, 3));	
+		setLayout(new GridLayout(7, 3));
 		checkBoxMap = new HashMap<JCheckBox, String>();
 	}
-	
-	public void initCheckBoxes(Category _currentCategory, Team _currentTeam){
+
+	public void initCheckBoxes(Category _currentCategory, Team _currentTeam) {
 		currentCategory = _currentCategory;
 		currentTeam = _currentTeam;
 		checkBoxMap = new HashMap<JCheckBox, String>();
-				
-		ScoringSheet currentSheet = currentTeam.getScoringSheet(currentCategory);
-		
+
+		ScoringSheet currentSheet = currentTeam
+				.getScoringSheet(currentCategory);
+
 		for (String achievementId : currentCategory.getAchievements().keySet()) {
-			Achievement currentAchievement = currentCategory.getAchievements().get(achievementId);
-			JCheckBox checkBox = new JCheckBox(currentAchievement.getDisplayName());
-			checkBoxMap.put(checkBox,  achievementId);
+			Achievement currentAchievement = currentCategory.getAchievements()
+					.get(achievementId);
+			JCheckBox checkBox = new JCheckBox(
+					currentAchievement.getDisplayName());
+			checkBoxMap.put(checkBox, achievementId);
 			checkBox.setToolTipText(currentAchievement.getDescription());
 			if (currentSheet.getAchievementValue(achievementId) > 0) {
 				checkBox.setSelected(true);
@@ -49,22 +52,23 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		JCheckBox cb = (JCheckBox)e.getSource();
+		JCheckBox cb = (JCheckBox) e.getSource();
 		String id = checkBoxMap.get(cb);
 		if (cb.isSelected())
 			currentTeam.scoreAchievement(currentCategory, id);
 		else
 			currentTeam.scoreAchievement(currentCategory, id, 0);
-			
+
 	}
+
 	public void addItemListener(ItemListener il) {
-		for(JCheckBox box : checkBoxMap.keySet()) {
+		for (JCheckBox box : checkBoxMap.keySet()) {
 			box.addItemListener(il);
 		}
 	}
 
 	public void removeItemListener(ItemListener il) {
-		for(JCheckBox box : checkBoxMap.keySet()) {
+		for (JCheckBox box : checkBoxMap.keySet()) {
 			box.removeItemListener(il);
 		}
 	}

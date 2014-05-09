@@ -25,8 +25,13 @@ public class OGPCDataModel {
 		// save time, I'm having the teams
 		// initialize scoring sheets up front which require that the categories
 		// be loaded first.
-		Category programming = new Category("Programming",1);
-		programming.addAchievement("1","Way of the Wanderer",15,"Show a diagram of at least one element of the game logic (i.e. decision tree, AI process, player progression)");
+		Category programming = new Category("Programming", 3);
+		programming
+				.addAchievement(
+						"1",
+						"Way of the Wanderer",
+						15,
+						"Show a diagram of at least one element of the game logic (i.e. decision tree, AI process, player progression)");
 		programming.addAchievement("2", "Objectify", 5,
 				"Use object-oriented programming.");
 		programming
@@ -89,7 +94,7 @@ public class OGPCDataModel {
 				"Controls are configurable.");
 		categories.add(programming);
 
-		Category gameMechanics = new Category("Game Mechanics",2);
+		Category gameMechanics = new Category("Game Mechanics", 4);
 		gameMechanics.addAchievement("1", "Reflex Scope", 15,
 				"Explain how the scope of the game was limited or reduced.");
 		gameMechanics
@@ -140,7 +145,7 @@ public class OGPCDataModel {
 				"Game has optional additional challenges.");
 		categories.add(gameMechanics);
 
-		Category artAndAssets = new Category("Art and Assets",3);
+		Category artAndAssets = new Category("Art and Assets", 5);
 		artAndAssets.addAchievement("1", "Scribblenaught", 20,
 				"All of the game's graphics were made by the team.");
 		artAndAssets.addAchievement("2", "Scribblenaught", 10,
@@ -195,7 +200,7 @@ public class OGPCDataModel {
 				"Audio is well-synced with visuals.");
 		categories.add(artAndAssets);
 
-		Category themeAndStyle = new Category("Theme and Style",4);
+		Category themeAndStyle = new Category("Theme and Style", 6);
 		themeAndStyle.addAchievement("1", "Theme Hospital", 20,
 				"Game is built completely around theme.");
 		themeAndStyle.addAchievement("2", "Theme Hospital", 10,
@@ -247,7 +252,7 @@ public class OGPCDataModel {
 				"Game features character development.");
 		categories.add(themeAndStyle);
 
-		Category Teamwork = new Category("Teamwork",5);
+		Category Teamwork = new Category("Teamwork", 7);
 		Teamwork.addAchievement("1", "Really Impressive Title", 5,
 				"Team has a name.");
 		Teamwork.addAchievement("2", "Character Class", 10,
@@ -279,7 +284,7 @@ public class OGPCDataModel {
 				"Use source control - or back up multiple versions of the source.");
 		categories.add(Teamwork);
 
-		Category professionalism = new Category("Professionalism",6);
+		Category professionalism = new Category("Professionalism", 8);
 		professionalism.addAchievement("1", "Emcee", 10,
 				"Give a short presentation on your game.");
 		professionalism.addAchievement("2", "Chorus of Voices", 10,
@@ -326,6 +331,19 @@ public class OGPCDataModel {
 		professionalism.addAchievement("18", "Impossible", 10,
 				"Game finished and released before the Main Event.");
 		categories.add(professionalism);
+
+		Category judgesChoice = new Category("Judges' Choice", 1);
+		judgesChoice.addAchievement("1", "First Place", 3, "");
+		judgesChoice.addAchievement("2", "Second Place", 2, "");
+		judgesChoice.addAchievement("3", "Third Place", 1, "");
+		categories.add(judgesChoice);
+
+		Category peoplesChoice = new Category("People's Choice", 2);
+		peoplesChoice.addAchievement("1", "First Place", 3, "");
+		peoplesChoice.addAchievement("2", "Second Place", 2, "");
+		peoplesChoice.addAchievement("3", "Third Place", 1, "");
+		categories.add(peoplesChoice);
+
 		Collections.sort(categories);
 
 		File dataFile = new File("/Users/padraic/tempData.txt");
@@ -335,29 +353,30 @@ public class OGPCDataModel {
 					"Franklin Laser Cats", SchoolType.MIDDLE_SCHOOL,
 					"Lucidyne Technologies Inc.", 0, "FALSE"));
 			teams.add(new Team("702", "Gasper", "John", "Game Droid",
-					SchoolType.MIDDLE_SCHOOL, "<Unknown>", 0, "FALSE"));
+					SchoolType.MIDDLE_SCHOOL, "Independent", 0, "FALSE"));
 			teams.add(new Team("703", "Gordon", "Lynda", "Level Up",
-					SchoolType.MIDDLE_SCHOOL, "Cedar Park Middle School", 0, "FALSE"));
+					SchoolType.MIDDLE_SCHOOL, "Cedar Park Middle School", 0,
+					"FALSE"));
 			teams.add(new Team("704", "Jamalapuram", "Sairama", "Three Amigos",
-					SchoolType.MIDDLE_SCHOOL, "<Unknown>", 0, "FALSE"));
+					SchoolType.MIDDLE_SCHOOL, "Three Amigos", 0, "FALSE"));
 			teams.add(new Team("705", "Jhala", "Bhadraraj", "SmartGamers",
 					SchoolType.MIDDLE_SCHOOL, "Nike", 0, "FALSE"));
 			teams.add(new Team("706", "Menon", "Narayan", "Bad Robots",
-					SchoolType.MIDDLE_SCHOOL, "<Unknown>", 0, "FALSE"));
+					SchoolType.MIDDLE_SCHOOL, "Bad Robots", 0, "FALSE"));
 
 			teams.add(new Team("901", "Horner", "Linda",
 					"Lebanaon Tech Warriors", SchoolType.HIGH_SCHOOL,
 					"Lebanon High School", 0, "FALSE"));
 			teams.add(new Team("902", "Datta", "Chitra", "Glitchbusters",
-					SchoolType.HIGH_SCHOOL, "<Unknown>", 0, "FALSE"));
+					SchoolType.HIGH_SCHOOL, "Independent", 0, "FALSE"));
 			teams.add(new Team("903", "Hubbard", "Jill", "Crimsonites",
 					SchoolType.HIGH_SCHOOL, "Tigard Tualatin School District",
 					0, "FALSE"));
 			teams.add(new Team("904", "Meyers", "Bill", "Powerful Pixels",
 					SchoolType.HIGH_SCHOOL, "Ashland High School", 0, "FALSE"));
-			teams.add(new Team("905", "Owings", "Ron", "BullDawgs Bashers",
-					SchoolType.HIGH_SCHOOL, "Sutherlin High school", 0, "FALSE"));
-			teams.add(new Team("906", "Macdonald", "Randy", "<Unknown>",
+			teams.add(new Team("905", "", "", "Melted Gravel Software",
+					SchoolType.HIGH_SCHOOL, "Amity High school", 0, "FALSE"));
+			teams.add(new Team("906", "Macdonald", "Randy", "Polymythy",
 					SchoolType.HIGH_SCHOOL, "Franklin High School", 0, "FALSE"));
 			teams.add(new Team("907", "Smith", "Terrel", "SHS OGPC Team",
 					SchoolType.HIGH_SCHOOL, "Sherwood High School", 0, "FALSE"));
@@ -365,24 +384,26 @@ public class OGPCDataModel {
 					"Error 404: The Team You Are Looking for Does Not Exist",
 					SchoolType.HIGH_SCHOOL,
 					"Clover STEMs Science Club: Deschutes Co 4-H", 0, "FALSE"));
-			teams.add(new Team("909", "Macdonald", "Randy", "<Unknown>",
+			teams.add(new Team("909", "Macdonald", "Randy", "The Story Guys",
 					SchoolType.HIGH_SCHOOL, "Franklin High School", 0, "FALSE"));
 			teams.add(new Team("910", "Seawright", "Andrew", "Sandwich Mafia",
 					SchoolType.HIGH_SCHOOL, "Riverdale / LO ", 0, "FALSE"));
 			teams.add(new Team("911", "Boley", "Jan", "Astral Horde",
-					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0, "FALSE"));
+					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0,
+					"FALSE"));
 			teams.add(new Team("912", "Fulton", "Steve",
 					"Tiny Walrus Interactive", SchoolType.HIGH_SCHOOL,
 					"Tigard High School", 0, "FALSE"));
-			teams.add(new Team("913", "Bartlo", "Chris", "<Unknown>",
-					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));
-			teams.add(new Team("914", "Fassio", "Erin",
-					"Melted Gravel Software", SchoolType.HIGH_SCHOOL,
-					"Amity High School", 0, "FALSE"));
+			teams.add(new Team("913", "Bartlo", "Chris", "<Unknown> - Wilson",
+					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));	
+			teams.add(new Team("914", "", "",
+					"Cafe Vivec", SchoolType.HIGH_SCHOOL,
+					"Crescent Valley High School", 0, "FALSE"));
 			teams.add(new Team("915", "Bartlo", "Chris", "Based Trojans",
 					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));
 			teams.add(new Team("916", "Boley", "Jan", "Penteract",
-					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0, "FALSE"));
+					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0,
+					"FALSE"));
 			teams.add(new Team("917", "Fulton", "Steve", "Bumbler Interactive",
 					SchoolType.HIGH_SCHOOL, "Tigard High School", 0, "FALSE"));
 			teams.add(new Team("918", "Galbraith", "Jason",
@@ -398,7 +419,8 @@ public class OGPCDataModel {
 			teams.add(new Team("922", "Bartlo", "Chris", "Ballad Games",
 					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));
 			teams.add(new Team("923", "Boley", "Jan", "GLOVE Studio",
-					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0, "FALSE"));
+					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0,
+					"FALSE"));
 			teams.add(new Team("924", "Fulton", "Steve", "TANSTAAFL!",
 					SchoolType.HIGH_SCHOOL, "Tigard High School", 0, "FALSE"));
 			teams.add(new Team("925", "Galbraith", "Jason",
@@ -412,7 +434,8 @@ public class OGPCDataModel {
 			teams.add(new Team("928", "Galbraith", "Jason", "Team 1",
 					SchoolType.HIGH_SCHOOL, "Sunset High School", 0, "FALSE"));
 			teams.add(new Team("929", "Boley", "Jan", "IX (9th) Legion",
-					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0, "FALSE"));
+					SchoolType.HIGH_SCHOOL, "Crescent Valley High School", 0,
+					"FALSE"));
 			teams.add(new Team("930", "Bartlo", "Chris", "leetfleet",
 					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));
 			teams.add(new Team("931", "Bartlo", "Chris", "Team Henry",
@@ -428,31 +451,29 @@ public class OGPCDataModel {
 			teams.add(new Team("935", "Bartlo", "Chris", "Wilson JV2",
 					SchoolType.HIGH_SCHOOL, "Wilson High School", 0, "FALSE"));
 
-	
 		}
 
 	}
 
 	public String[] calculateBestInShow() {
-		String[] rankings = {"besty"};
+		String[] rankings = { "besty" };
 		return rankings;
 	}
 
 	public String[] calculateProChoice() {
-		String[] rankings = {"pro-y"};
+		String[] rankings = { "pro-y" };
 		return rankings;
 	}
 
 	public String[] calculateStudentChoice() {
-		String[] rankings = {"study"};
-		return rankings;
-	}
-	
-	public String[] calculateRookieAward() {
-		String[] rankings = {"rookie"};
+		String[] rankings = { "study" };
 		return rankings;
 	}
 
+	public String[] calculateRookieAward() {
+		String[] rankings = { "rookie" };
+		return rankings;
+	}
 
 	public String[] calculateCategoryAward(Category category) {
 		// Need to add category heirarchy here
@@ -486,16 +507,15 @@ public class OGPCDataModel {
 				thirdPlace = thirdPlace + ":" + team.getName();
 			}
 		}
-		rankings[0]=firstPlace;
-		rankings[1]=secondPlace;
-		rankings[2]=thirdPlace;
-		
+		rankings[0] = firstPlace;
+		rankings[1] = secondPlace;
+		rankings[2] = thirdPlace;
+
 		return rankings;
 	}
 
-
 	public Collection<Category> getCategories() {
-		
+
 		return categories;
 	}
 
@@ -540,7 +560,8 @@ public class OGPCDataModel {
 		System.out.println("reading data");
 
 		try {
-			FileReader fileReader = new FileReader("/Users/padraic/tempData.txt");
+			FileReader fileReader = new FileReader(
+					"/Users/padraic/tempData.txt");
 			BufferedReader textReader = new BufferedReader(fileReader);
 			int numLines = 0;
 			while ((textReader.readLine()) != null) {
