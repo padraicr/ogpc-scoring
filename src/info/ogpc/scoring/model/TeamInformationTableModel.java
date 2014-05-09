@@ -1,14 +1,14 @@
 package info.ogpc.scoring.model;
 
-import info.ogpc.scoring.view.Main;
+import info.ogpc.scoring.main.Main;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 public class TeamInformationTableModel implements TableModel {
 	OGPCDataModel dataModel = Main.getDataModel();
-	String[] columnNames = { "Team ID", "Team Name", "Type", "Coach", "School",
-			"Number of Students" };
+	String[] columnNames = { "Team ID", "Team Name", "Type", "Coach", "Organization",
+			"Number of Students", "Rookie" };
 
 	@Override
 	public int getRowCount() {
@@ -68,6 +68,11 @@ public class TeamInformationTableModel implements TableModel {
 			return team.getSchoolName();
 		case 5:
 			return team.getNumberOfStudents();
+		case 6:
+			if (team.isRookie()) 
+				return "Yes";
+			else
+				return "";
 		default:	
 			throw new RuntimeException("Invalide column:"+columnIndex);
 		}

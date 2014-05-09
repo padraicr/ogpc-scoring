@@ -23,9 +23,8 @@ public class CheckBoxPanel extends JPanel implements ItemListener{
 	HashMap<JCheckBox, String> checkBoxMap;
 	
 	public CheckBoxPanel() {
-		setLayout(new GridLayout(10, 2));
+		setLayout(new GridLayout(7, 3));	
 		checkBoxMap = new HashMap<JCheckBox, String>();
-
 	}
 	
 	public void initCheckBoxes(Category _currentCategory, Team _currentTeam){

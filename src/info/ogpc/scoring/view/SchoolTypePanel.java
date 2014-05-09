@@ -2,20 +2,21 @@ package info.ogpc.scoring.view;
 
 import info.ogpc.scoring.model.SchoolType;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class SchoolTypePanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JRadioButton rbHighSchool = new JRadioButton("High School", true);
 	JRadioButton rbMiddleSchool = new JRadioButton("Middle School");
 	ButtonGroup rbGroup = new ButtonGroup();

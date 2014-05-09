@@ -1,16 +1,17 @@
-package info.ogpc.scoring.view;
+package info.ogpc.scoring.main.tabs;
 
+import info.ogpc.scoring.main.Main;
 import info.ogpc.scoring.model.Category;
 import info.ogpc.scoring.model.OGPCDataModel;
 import info.ogpc.scoring.model.Team;
+import info.ogpc.scoring.view.CheckBoxPanel;
+import info.ogpc.scoring.view.SchoolTypeAndCategoryPanel;
+import info.ogpc.scoring.view.ScoringTablePanel;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,10 +19,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
 public class ScoringPanel extends JPanel implements ActionListener,ItemListener {
 	/**
@@ -32,6 +32,7 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 	CheckBoxPanel checkBoxPanel;
 	ScoringTablePanel scoringTablePanel;
 	SchoolTypeAndCategoryPanel schoolTypeAndCategoryPanel = new SchoolTypeAndCategoryPanel();
+	JButton btSave = new JButton("Save");
 
 	public ScoringPanel() {
 		setLayout(new GridBagLayout());
@@ -49,15 +50,16 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 		add(schoolTypeAndCategoryPanel, c);
 		
 		checkBoxPanel = new CheckBoxPanel();
-
-		checkBoxPanel.setLayout(new GridLayout(9, 4));
 		c.gridx = 1;
 		c.gridwidth=2;
 		c.ipadx = 0;
+		c.weightx=0.7;
+		c.anchor = GridBagConstraints.NORTHWEST;
 		add(checkBoxPanel,c);
 		updateCheckBoxPanel();
 		checkBoxPanel.addItemListener(this);
 		
+		c.anchor = GridBagConstraints.NORTH;
 		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth=3;
@@ -66,12 +68,26 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 		c.weighty=0.5;
 
 		scoringTablePanel = new ScoringTablePanel(schoolTypeAndCategoryPanel.getSelectedSchoolType());
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(5,5,5,5);
 
 		scoringTablePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		add(scoringTablePanel,c);
+		
+		c.gridx = 2;
+		c.gridy = 2;
+		c.gridwidth=1;
+		c.gridheight=1;
+		c.weightx=0.5;
+		c.weighty=0.5;
+		c.fill = GridBagConstraints.NONE;
+
+		c.anchor = GridBagConstraints.SOUTHEAST;
+		c.insets = new Insets(5,5,5,5);
+		btSave.addActionListener(this);
+		add(btSave,c);
+	
 
 
 	}
@@ -79,13 +95,18 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("got event");
+		if (e.getSource() instanceof JButton) {
+			dataModel.writeData();
+		} else {
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				scoringTablePanel.updateData(schoolTypeAndCategoryPanel.getSelectedSchoolType());
 				updateCheckBoxPanel();
-				scoringTablePanel.updateData();
 			}
 		});
+		}
 
 
 	}
@@ -108,7 +129,7 @@ public class ScoringPanel extends JPanel implements ActionListener,ItemListener 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				scoringTablePanel.updateData();
+				scoringTablePanel.updateData(schoolTypeAndCategoryPanel.getSelectedSchoolType());
 			}
 		});
 	}	

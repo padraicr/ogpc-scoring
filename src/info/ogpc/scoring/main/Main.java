@@ -1,4 +1,4 @@
-package info.ogpc.scoring.view;
+package info.ogpc.scoring.main;
 
 import info.ogpc.scoring.model.OGPCDataModel;
 import info.ogpc.scoring.model.Team;

@@ -1,6 +1,6 @@
 package info.ogpc.scoring.model;
 
-import info.ogpc.scoring.view.Main;
+import info.ogpc.scoring.main.Main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,10 +14,11 @@ public class Team implements Comparable<Team>{
 	private int numberOfStudents;
 	private String teamId;
 	private Map<Category, ScoringSheet> scoringSheets;
+	private Boolean isRookie = new Boolean(false);
 
 	public Team(String _teamId, String _coachLastName, String _coachFirstName,
 			String _name, SchoolType _schoolType, String _schoolName,
-			int _numberOfStudents) {
+			int _numberOfStudents, String _isRookie) {
 		teamId = _teamId;
 		coachLastName = _coachLastName;
 		coachFirstName = _coachFirstName;
@@ -26,7 +27,7 @@ public class Team implements Comparable<Team>{
 		schoolName = _schoolName;
 		numberOfStudents = _numberOfStudents;
 		scoringSheets = new HashMap<Category, ScoringSheet>();
-
+		isRookie = new Boolean(_isRookie);
 	}
 	
 
@@ -122,7 +123,8 @@ public class Team implements Comparable<Team>{
 		outputLine.append(getSchoolType()+",");
 		outputLine.append(getSchoolName()+",");
 		outputLine.append(getNumberOfStudents()+",");
-		
+		outputLine.append(isRookie()+",");
+
 		for (Category category : scoringSheets.keySet()) {
 			ScoringSheet sheet = scoringSheets.get(category);
 			outputLine.append(category.getName()+",");
@@ -133,6 +135,8 @@ public class Team implements Comparable<Team>{
 	}
 
 	public Team(String data) {
+		OGPCDataModel dataModel = Main.getDataModel();
+
 		//For File I/O, comma delimited string
 		String[] parsedData = data.split(",");
 		teamId = parsedData[0];
@@ -147,15 +151,17 @@ public class Team implements Comparable<Team>{
 		
 		schoolName = parsedData[5];
 		numberOfStudents = new Integer(parsedData[6]);
-		System.out.println("teamId: "+teamId+" - "+ coachLastName+ " - " +coachFirstName+ " - " +name
-				+ " - " +schoolType+ " - " + schoolName+" - " +numberOfStudents);
+		isRookie = new Boolean(parsedData[7]);
+		System.out.println(data);
 
-		OGPCDataModel dataModel = Main.getDataModel();
+		System.out.println("teamId: "+teamId+" - "+ coachLastName+ " - " +coachFirstName+ " - " +name
+				+ " - " +schoolType+ " - " + schoolName+" - " +numberOfStudents + " - "+ isRookie);
+		isRookie = new Boolean(parsedData[7]);
 		
-		Category category = dataModel.getCategory(parsedData[7]);
+		Category category = dataModel.getCategory(parsedData[8]);
 		ScoringSheet tempSheet = new ScoringSheet(category);
 		scoringSheets = new HashMap<Category, ScoringSheet>();
-		for (int i = 8; i <= parsedData.length; i+=2) {
+		for (int i = 9; i <= parsedData.length; i+=2) {
 			if (parsedData[i].equals("END")) {
 				i++; //increment the index to skip "END"
 				scoringSheets.put(category, tempSheet);
@@ -170,6 +176,7 @@ public class Team implements Comparable<Team>{
 			}
 			tempSheet.scoreAchievement(parsedData[i], new Integer(parsedData[i+1]));
 		}
+		
 	
 	}
 
@@ -178,6 +185,27 @@ public class Team implements Comparable<Team>{
 	public int compareTo(Team o) {
 		// TODO Auto-generated method stub
 		return name.compareToIgnoreCase(o.getName());
+	}
+
+
+	public boolean isRookie() {
+		return isRookie;
+	}
+
+
+	public Integer calculateBestInShow() {
+		Integer total = new Integer(0);
+		for (Category category : scoringSheets.keySet()) {
+			ScoringSheet sheet = scoringSheets.get(category);
+			total += sheet.getTotalScore();
+		}
+		return total;
+	}
+
+
+	public void setRookie(boolean selected) {
+		isRookie = selected;
+		
 	}
 	
 }

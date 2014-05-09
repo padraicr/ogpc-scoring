@@ -1,8 +1,12 @@
-package info.ogpc.scoring.view;
+package info.ogpc.scoring.main;
+
+import info.ogpc.scoring.main.tabs.ScoringPanel;
+import info.ogpc.scoring.main.tabs.TeamInformationPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,28 +22,22 @@ public class MainWindow extends JPanel implements ChangeListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	JTabbedPane contentPane;
-	SummaryPanel summaryPage = new SummaryPanel();
 	JComponent scoringPage = new ScoringPanel();
 	JComponent teamInformation = new TeamInformationPanel();
-	JComponent Achievements = new AchievementInfoPanel();
 
 	public MainWindow() {
 
 		contentPane = new JTabbedPane();
 		contentPane.addChangeListener(this);
 
-		JComponent summaryPage = new SummaryPanel();
 		JComponent scoringPage = new ScoringPanel();
 		JComponent teamInformation = new TeamInformationPanel();
-		JComponent Achievements = new AchievementInfoPanel();
 
 		contentPane.setPreferredSize(new Dimension(1024, 768));
 		setMinimumSize(new Dimension(1024, 768));
 
-//		contentPane.addTab("Scoring Summary", summaryPage);
 		contentPane.addTab("Scoring Details", scoringPage);
-//		contentPane.addTab("Team Information", teamInformation);
-//		contentPane.addTab("Achievements", Achievements);
+		contentPane.addTab("Team Information", teamInformation);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -57,9 +55,6 @@ public class MainWindow extends JPanel implements ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		summaryPage.updateSummary();
-		summaryPage.validate();
-		summaryPage.repaint();
 		Main.getDataModel().writeData();
 //		Main.getDataModel().readData();
 		

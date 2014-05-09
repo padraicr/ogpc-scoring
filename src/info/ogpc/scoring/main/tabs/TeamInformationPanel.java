@@ -1,10 +1,9 @@
-package info.ogpc.scoring.view;
+package info.ogpc.scoring.main.tabs;
 
-import info.ogpc.scoring.model.AchievementScoreTableModel;
+import info.ogpc.scoring.model.TeamInformationTableModel;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -18,15 +17,14 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
-public class ScoringTablePanel extends JPanel{
+public class TeamInformationPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	JTable teamTable;
-	AchievementScoreTableModel data;
 
-	public ScoringTablePanel (String schoolType) {
+	public TeamInformationPanel () {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
@@ -34,20 +32,15 @@ public class ScoringTablePanel extends JPanel{
 		c.gridwidth = 3;
 		c.weightx = 0.5;
 		c.weighty = 0.5;
-		
-		data = new AchievementScoreTableModel();
-
-		data.loadData(schoolType);
-		teamTable = new JTable(data) {
-		
-			    public Component prepareRenderer(
+		teamTable = new JTable(new TeamInformationTableModel()) {
+		    public Component prepareRenderer(
 			        TableCellRenderer renderer, int row, int column)
 			    {
 			        Component c = super.prepareRenderer(renderer, row, column);
-			/*        if ((row % 2) == 1)
+			        if ((row % 2) == 0)
 			        	c.setBackground(new Color(221, 243, 202));
 			        else
-			        	c.setBackground(Color.WHITE);*/
+			        	c.setBackground(Color.WHITE);
 			        
 			        if (c instanceof JComponent) {
 			        	((JComponent) c).setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
@@ -57,29 +50,27 @@ public class ScoringTablePanel extends JPanel{
 			        return c;
 			    }
 			};
-			
-		teamTable.setIntercellSpacing(new Dimension(1,1));
-		
-		teamTable.setAutoCreateRowSorter(true);
-		
-		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-		rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-		for (int i = 1; i<teamTable.getColumnCount(); i++)
-			teamTable.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
+	
+			DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+			rightRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+				teamTable.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+			((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
+		    .setHorizontalAlignment(JLabel.CENTER);
+			teamTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
 		((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
 	    .setHorizontalAlignment(JLabel.CENTER);
-		
+		teamTable.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
+	((DefaultTableCellRenderer)teamTable.getTableHeader().getDefaultRenderer())
+    .setHorizontalAlignment(JLabel.CENTER);
 		JScrollPane scrollPane = new JScrollPane(teamTable);
 		teamTable.setFillsViewportHeight(true);
+		teamTable.setAutoCreateRowSorter(true);
+
 		
 		//scrollPane.setPreferredSize(new Dimension(1024,768));
 		add(scrollPane,c);
 
 		
-	}
-
-	public void updateData(String schoolType) {
-		data.loadData( schoolType);		
 	}
 
 }

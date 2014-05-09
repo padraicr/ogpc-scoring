@@ -1,21 +1,22 @@
 package info.ogpc.scoring.view;
 
+import info.ogpc.scoring.main.Main;
 import info.ogpc.scoring.model.Category;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class CategoryTypePanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ButtonGroup rbGroup = new ButtonGroup();
 
 	public CategoryTypePanel () {
