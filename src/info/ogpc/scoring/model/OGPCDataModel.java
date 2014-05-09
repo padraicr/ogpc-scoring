@@ -15,8 +15,10 @@ public class OGPCDataModel {
 
 	LinkedList<Category> categories = new LinkedList<Category>();
 	LinkedList<Team> teams = new LinkedList<Team>();
+	String fileURL;
 
-	public OGPCDataModel() {
+	public OGPCDataModel(String _fileURL) {
+		fileURL = _fileURL;
 
 		// Hardcoding the data model, if time will make it dynamic, probably
 		// best to import it as a
@@ -346,7 +348,7 @@ public class OGPCDataModel {
 
 		Collections.sort(categories);
 
-		File dataFile = new File("/Users/padraic/tempData.txt");
+		File dataFile = new File(fileURL);
 		if (!dataFile.exists()) {
 
 			teams.add(new Team("701", "Freman", "Patrick",
@@ -542,7 +544,7 @@ public class OGPCDataModel {
 		System.out.println("writing data");
 
 		try {
-			FileWriter write = new FileWriter("/Users/padraic/tempData.txt",
+			FileWriter write = new FileWriter(fileURL,
 					false);
 			PrintWriter printLine = new PrintWriter(write);
 
@@ -560,8 +562,7 @@ public class OGPCDataModel {
 		System.out.println("reading data");
 
 		try {
-			FileReader fileReader = new FileReader(
-					"/Users/padraic/tempData.txt");
+			FileReader fileReader = new FileReader(fileURL);
 			BufferedReader textReader = new BufferedReader(fileReader);
 			int numLines = 0;
 			while ((textReader.readLine()) != null) {
@@ -570,7 +571,7 @@ public class OGPCDataModel {
 			textReader.close();
 			fileReader.close();
 
-			fileReader = new FileReader("/Users/padraic/tempData.txt");
+			fileReader = new FileReader(fileURL);
 			textReader = new BufferedReader(fileReader);
 
 			LinkedList<Team> tempTeams = new LinkedList<Team>();

@@ -17,12 +17,13 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String fileURL = "/Users/padraic/ogpc70.csv";
 		// Initialize data model
-		dataModel = new OGPCDataModel();
+		dataModel = new OGPCDataModel(fileURL);
 		for (Team team : dataModel.getTeams())
 			team.initScoringSheet();
 
-		File dataFile = new File("/Users/padraic/tempData.txt");
+		File dataFile = new File(fileURL);
 		if (dataFile.exists())
 			Main.getDataModel().readData();
 
