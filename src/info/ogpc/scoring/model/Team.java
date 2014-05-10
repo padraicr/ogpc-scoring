@@ -89,7 +89,7 @@ public class Team implements Comparable<Team> {
 							+ category);
 	}
 
-	public void scoreAchievement(Category category, String achievementId,
+	public void scoreAchievement(Category category, Integer achievementId,
 			Integer value) {
 		ScoringSheet scoringSheet = scoringSheets.get(category);
 		if (scoringSheet == null)
@@ -101,7 +101,7 @@ public class Team implements Comparable<Team> {
 
 	}
 
-	public void scoreAchievement(Category category, String achievementId) {
+	public void scoreAchievement(Category category, Integer achievementId) {
 		ScoringSheet scoringSheet = scoringSheets.get(category);
 		if (scoringSheet == null)
 			throw new RuntimeException(
@@ -176,7 +176,7 @@ public class Team implements Comparable<Team> {
 				tempSheet = new ScoringSheet(category);
 				i++;// increment index as we just handled the category name
 			}
-			tempSheet.scoreAchievement(parsedData[i], new Integer(
+			tempSheet.scoreAchievement(new Integer(parsedData[i]), new Integer(
 					parsedData[i + 1]));
 		}
 

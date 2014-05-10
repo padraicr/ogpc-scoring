@@ -20,24 +20,25 @@ public class CheckBoxPanel extends JPanel implements ItemListener {
 	private static final long serialVersionUID = 1L;
 	Category currentCategory;
 	Team currentTeam;
-	HashMap<JCheckBox, String> checkBoxMap;
+	HashMap<JCheckBox, Integer> checkBoxMap;
 
 	public CheckBoxPanel() {
-		setLayout(new GridLayout(7, 3));
-		checkBoxMap = new HashMap<JCheckBox, String>();
+		setLayout(new GridLayout(9, 3));
+		checkBoxMap = new HashMap<JCheckBox, Integer>();
 	}
 
 	public void initCheckBoxes(Category _currentCategory, Team _currentTeam) {
 		currentCategory = _currentCategory;
 		currentTeam = _currentTeam;
-		checkBoxMap = new HashMap<JCheckBox, String>();
+		checkBoxMap = new HashMap<JCheckBox, Integer>();
 
 		ScoringSheet currentSheet = currentTeam
 				.getScoringSheet(currentCategory);
 
-		for (String achievementId : currentCategory.getAchievements().keySet()) {
+		for (Integer achievementId : currentCategory.getAchievements().keySet()) {
 			Achievement currentAchievement = currentCategory.getAchievements()
 					.get(achievementId);
+			System.out.println(achievementId+" - "+currentAchievement);
 			JCheckBox checkBox = new JCheckBox(
 					currentAchievement.getDisplayName());
 			checkBoxMap.put(checkBox, achievementId);
@@ -53,7 +54,7 @@ public class CheckBoxPanel extends JPanel implements ItemListener {
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		JCheckBox cb = (JCheckBox) e.getSource();
-		String id = checkBoxMap.get(cb);
+		Integer id = checkBoxMap.get(cb);
 		if (cb.isSelected())
 			currentTeam.scoreAchievement(currentCategory, id);
 		else

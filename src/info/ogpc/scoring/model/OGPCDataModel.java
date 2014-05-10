@@ -94,6 +94,9 @@ public class OGPCDataModel {
 						"Game has quality settings or performs well even on low-end devices.");
 		programming.addAchievement("21", "Scroll-Fire", 5,
 				"Controls are configurable.");
+		programming.addAchievement("22", "Discretionary", 5,"");
+		programming.addAchievement("23", "Discretionary", 10,"");
+		programming.addAchievement("24", "Discretionary", 15,"");
 		categories.add(programming);
 
 		Category gameMechanics = new Category("Game Mechanics", 4);
@@ -145,6 +148,9 @@ public class OGPCDataModel {
 				"Game has a replay factor to keep players coming back.");
 		gameMechanics.addAchievement("17", "Trinket", 10,
 				"Game has optional additional challenges.");
+		gameMechanics.addAchievement("18", "Discretionary", 5,"");
+		gameMechanics.addAchievement("19", "Discretionary", 10,"");
+		gameMechanics.addAchievement("20", "Discretionary", 15,"");
 		categories.add(gameMechanics);
 
 		Category artAndAssets = new Category("Art and Assets", 5);
@@ -200,6 +206,9 @@ public class OGPCDataModel {
 						"Audio changes dynamically based on gameplay (i.e. distant sounds are quieter, combat changes music).");
 		artAndAssets.addAchievement("20", "Talkie", 10,
 				"Audio is well-synced with visuals.");
+		artAndAssets.addAchievement("21", "Discretionary", 5,"");
+		artAndAssets.addAchievement("22", "Discretionary", 10,"");
+		artAndAssets.addAchievement("23", "Discretionary", 15,"");
 		categories.add(artAndAssets);
 
 		Category themeAndStyle = new Category("Theme and Style", 6);
@@ -252,6 +261,9 @@ public class OGPCDataModel {
 				"Game includes at least one non-player character.");
 		themeAndStyle.addAchievement("20", "Plot Thickener", 15,
 				"Game features character development.");
+		themeAndStyle.addAchievement("21", "Discretionary", 5,"");
+		themeAndStyle.addAchievement("22", "Discretionary", 10,"");
+		themeAndStyle.addAchievement("23", "Discretionary", 15,"");
 		categories.add(themeAndStyle);
 
 		Category Teamwork = new Category("Teamwork", 7);
@@ -284,6 +296,9 @@ public class OGPCDataModel {
 				"Describe the role of technical mentors or other outside resources used.");
 		Teamwork.addAchievement("16", "Controlling Chaos", 15,
 				"Use source control - or back up multiple versions of the source.");
+		Teamwork.addAchievement("17", "Discretionary", 5,"");
+		Teamwork.addAchievement("18", "Discretionary", 10,"");
+		Teamwork.addAchievement("19", "Discretionary", 15,"");
 		categories.add(Teamwork);
 
 		Category professionalism = new Category("Professionalism", 8);
@@ -332,6 +347,9 @@ public class OGPCDataModel {
 						"Release your source code under an open source license (i.e. GPL, MIT, CC0).");
 		professionalism.addAchievement("18", "Impossible", 10,
 				"Game finished and released before the Main Event.");
+		professionalism.addAchievement("19", "Discretionary", 5,"");
+		professionalism.addAchievement("20", "Discretionary", 10,"");
+		professionalism.addAchievement("21", "Discretionary", 15,"");
 		categories.add(professionalism);
 
 		Category judgesChoice = new Category("Judges' Choice", 1);
@@ -533,7 +551,7 @@ public class OGPCDataModel {
 		return teams;
 	}
 
-	public Map<String, Achievement> getAchievements(Category category) {
+	public Map<Integer, Achievement> getAchievements(Category category) {
 		if (category != null)
 			return category.getAchievements();
 		else
